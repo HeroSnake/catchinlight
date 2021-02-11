@@ -1,0 +1,82 @@
+/* Smaller Screens */
+@media only screen and (max-width: 1600px) {
+    .content {
+        width: 75%;
+    }
+    .icons {
+        left: 86.5vw;
+    }
+}
+@media only screen and (max-width: 1250px) {
+    .content {
+        width: 100%;
+    }
+    .iconsFooter {
+        display: block;
+    }
+    .iconsFooter a:hover {
+        color: white;
+        opacity: 0.3;
+    }
+    .icons{
+        display: none;
+    }
+    .section_main{
+        height: 22vw;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .menu{
+        height: 300px;
+    }
+}
+/* PHONES */
+@media only screen and (max-width: 800px) {
+    .section_main{
+        height: 33vw;
+    }
+    .hovereffect1 img{
+        height: 100%;
+        width: auto;
+    }
+    .accueil {
+        display: block;
+    }
+    .descriptionContainer {
+        display: block;
+        width: 100%;
+        margin: 0;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+    .containpic {
+        display: block;
+        width: 100%;
+    }
+    .photoContainer {
+        position: relative;
+        float: none;
+        margin: auto;
+    }
+    .dropdown-divider{
+        display: block;
+    }
+    .hovereffect .info {
+        opacity: 1;
+        filter: none;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+    }
+    .hovereffect .overlay{
+        background-color: rgba(24, 24, 24, 0.4);
+    }
+}
+@media only screen and (max-width: 600px) {
+    .menu {
+        width: 100%;
+    }
+    #carouselExampleIndicators{
+        display: none;
+    }
+}

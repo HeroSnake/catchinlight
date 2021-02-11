@@ -1,0 +1,27 @@
+.fapulse {
+    display: none;
+}
+/* .fapulse {
+    display: inherit;
+    opacity: 0.5;
+} */
+.pulse {
+    overflow: visible;
+    position: relative;
+    transition: opacity .5s, transform .3s;
+    animation: pulse-animation 0.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+@keyframes pulse-animation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
