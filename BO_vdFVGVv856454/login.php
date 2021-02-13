@@ -27,7 +27,7 @@
         if($count == 1 && (password_verify('JJjertutTra7trR78DDs9w!749a', $mpd_bdd))) {
             $_SESSION['myusername']="myusername";
             $_SESSION['login_user'] = $pseudo_bdd;
-            header("location: page_liste");
+            header("location: gallery_liste");
         }
         else {
             $error = "Your Login Name or Password is invalid";
@@ -40,7 +40,7 @@
     <form action="login.php" method = "post">
       <input type="text" id="login" class="fadeIn second" name="pseudo" placeholder="Login">
       <input type="password" id="password" class="fadeIn third" name="mdp" placeholder="Password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input class="btn" type="submit" class="fadeIn fourth" value="Log In">
     </form>
     <!-- Footer -->
     <div id="formFooter" class="text-danger bg-dark">
