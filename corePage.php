@@ -1,5 +1,4 @@
 <?php
-ob_start();
 // grab recaptcha library
 // require_once "recaptchalib.php";
 require_once 'db_connection.php';
@@ -31,7 +30,7 @@ $query_pages = $bdd->prepare("SELECT * FROM pages");
 $query_pages->execute();
 
 //Récupérer galleries
-$query_galleries = $bdd->prepare("SELECT * FROM `categorie` WHERE visible = 1");
+$query_galleries = $bdd->prepare("SELECT * FROM `galleries` WHERE visible = 1");
 $query_galleries->execute();
 
 //Récupérer services
@@ -39,12 +38,11 @@ $query_services = $bdd->prepare("SELECT * FROM `services` WHERE visible = 1");
 $query_services->execute();
 
 //VISITEURS - avec Cookies
-$nb_visitors;
 $query_nb_visitors = $bdd->prepare("SELECT visits FROM counter WHERE id=1");
 $query_nb_visitors->execute();
-while ($row = $query_nb_visitors->fetch(PDO::FETCH_ASSOC)) {
-    $nb_visitors = $row['visits'];
-}
+
+$result = $query_nb_visitors->fetch(\PDO::FETCH_ASSOC);
+$nb_visitors = $result['visits'];
 
 $index = false;
 if (isset($pageName)) {
@@ -67,23 +65,24 @@ if (isset($pageName)) {
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/main.js"></script>
 
     <!-- BOOSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
     <link rel="stylesheet" href="css/gallery-grid.css">
-    <link rel="stylesheet" href="css/pulse.css">
     <?php if(isset($css_gallery)){  echo $css_gallery;  }?>
 
     <link rel="icon" href="icon/CL_icon.png">
     <link rel="stylesheet" href="css/main.css?1">
     <link rel="stylesheet" href="css/responsive.css?1">
     <link rel="stylesheet" href="css/cookiealert.css?1">
+    <link rel="stylesheet" href="css/pulse.css">
+    <link rel="stylesheet" href="css/loader.css">
     <link rel="manifest" href="manifest.webmanifest">
 
     <script src="js/aa5b198ca0.js" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
     <script src="js/cookiealert.js"></script>
 
     <title>Catchin'Light : <?= $titre_page ?></title>
@@ -106,7 +105,7 @@ if (isset($pageName)) {
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a href="index" class="<?= active("index") ?>">Home</a></li>
                     <?php
-                    while ($row = $query_pages->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row = $query_pages->fetch(\PDO::FETCH_ASSOC)) {
                         if ($row['visible'] == 1) { ?>
                             <li class="dropdown-divider"></li>
                             <?php
@@ -115,8 +114,8 @@ if (isset($pageName)) {
                                     <a class="nav-link dropdown-toggle pointer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $row['nom'] ?></a>
                                     <div class="dropdown-menu bg-dark">
                                         <?php
-                                        while ($rowG = $query_galleries->fetch(PDO::FETCH_ASSOC)) { ?>
-                                            <a href="<?= $rowG['nom_categorie'] ?>" class="<?= active($rowG['nom_categorie']) ?>"><?= $rowG['Nom'] ?></a>
+                                        while ($rowG = $query_galleries->fetch(\PDO::FETCH_ASSOC)) { ?>
+                                            <a href="<?= $rowG['nom_gallery'] ?>" class="<?= active($rowG['nom_gallery']) ?>"><?= $rowG['Nom'] ?></a>
                                         <?php
                                         } ?>
                                     </div>
@@ -127,7 +126,7 @@ if (isset($pageName)) {
                                     <a class="nav-link dropdown-toggle <?= active($row['titre_lien']) ?> pointer" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $row['nom'] ?></a>
                                     <div class="dropdown-menu bg-dark">
                                         <?php
-                                        while ($rowS = $query_services->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        while ($rowS = $query_services->fetch(\PDO::FETCH_ASSOC)) { ?>
                                             <a href="<?=$row['titre_lien']?>#section<?= $rowS['section'] ?>" ><?= $rowS['titre'] ?></a>
                                         <?php
                                         } ?>
@@ -146,49 +145,55 @@ if (isset($pageName)) {
                 </ul>
             </div>
         </nav>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <?php
-                $count = 0;
-                foreach (new DirectoryIterator(__DIR__ . '/img/header') as $file) {
-                    if ($file->isFile()) {
-                        list($width, $height) = getimagesize(__DIR__ . '/img/header/' . $file);
-                        if ($width > 0) {
-                            if ($count == 0) {
-                                echo '
-                                <li data-target="#carouselExampleIndicators" data-slide-to="' . $count . '" class="active"></li>';
-                            } else {
-                                echo '
-                                <li data-target="#carouselExampleIndicators" data-slide-to="' . $count . '"></li>';
-                            }
-                            $count++;
-                        }
-                    }
-                }   ?>
-            </ol>
-            <div class="carousel-inner">
-                <?php
-                $count = 0;
-                foreach (new DirectoryIterator(__DIR__ . '/img/header') as $file) {
-                    if ($file->isFile()) {
-                        list($width, $height) = getimagesize(__DIR__ . '/img/header/' . $file);
-                        if ($width > 0) {
-                            $count++;
-                            if ($count == 1) {
-                                echo '
-                            <div class="carousel-item active" >
-                                <img class="d-block w-100" src="img/header/' . $file . '" alt="' . $count . '">
-                            </div>';
-                            } else {
-                                echo '
-                            <div class="carousel-item" >
-                                <img class="d-block w-100" src="img/header/' . $file . '" alt="' . $count . '">
-                            </div>';
-                            }
-                        }
-                    }
-                } ?>
+        <div id="loadingDiv">
+            <div id="preloader">
+                <div id="loader"></div>
             </div>
         </div>
-        <div class="tz-gallery">
-            <div class="row m-0">
+        <div id="pageAwait">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <?php
+                    $count = 0;
+                    foreach (new DirectoryIterator(__DIR__ . '/img/header') as $file) {
+                        if ($file->isFile()) {
+                            list($width, $height) = getimagesize(__DIR__ . '/img/header/' . $file);
+                            if ($width > 0) {
+                                if ($count == 0) {
+                                    echo '
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="' . $count . '" class="active"></li>';
+                                } else {
+                                    echo '
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="' . $count . '"></li>';
+                                }
+                                $count++;
+                            }
+                        }
+                    }   ?>
+                </ol>
+                <div class="carousel-inner">
+                    <?php
+                    $count = 0;
+                    foreach (new DirectoryIterator(__DIR__ . '/img/header') as $file) {
+                        if ($file->isFile()) {
+                            list($width, $height) = getimagesize(__DIR__ . '/img/header/' . $file);
+                            if ($width > 0) {
+                                $count++;
+                                if ($count == 1) {
+                                    echo '
+                                <div class="carousel-item active" >
+                                    <img class="d-block w-100" src="img/header/' . $file . '" alt="' . $count . '">
+                                </div>';
+                                } else {
+                                    echo '
+                                <div class="carousel-item" >
+                                    <img class="d-block w-100" src="img/header/' . $file . '" alt="' . $count . '">
+                                </div>';
+                                }
+                            }
+                        }
+                    } ?>
+                </div>
+            </div>
+            <div class="tz-gallery">
+                <div class="row m-0">

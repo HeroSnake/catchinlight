@@ -14,9 +14,9 @@
         $user_check = $_SESSION['login_user'];
         $ses_sql = $bdd->prepare("select pseudo from compte where pseudo = '$user_check' ");
         $ses_sql->execute();
-        while ($row = $ses_sql->fetch(PDO::FETCH_ASSOC)) {
-            $login_session = $row['pseudo'];
-        }
+        $result = $ses_sql->fetch(\PDO::FETCH_ASSOC);
+        $login_session = $result['pseudo'];
+
         if (!$ses_sql) {
             printf("Error: %s\n", mysqli_error($db));
             exit();

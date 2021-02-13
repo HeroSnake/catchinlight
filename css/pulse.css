@@ -1,27 +1,40 @@
-.fapulse {
-    display: none;
+
+.fa-heart{
+    position: absolute;
+    z-index: 10;
+    color: rgb(184, 184, 184);
+    margin: 20px;
+    text-shadow: 2px 2px 2px black;
 }
-/* .fapulse {
-    display: inherit;
-    opacity: 0.5;
-} */
+.change-icon{
+    cursor: pointer;
+}
+.like-text{
+    position: absolute;
+    z-index: 10;
+    color: rgb(184, 184, 184);
+    margin-top: 30px;
+    margin-left: 45px;
+    text-shadow: 2px 2px 2px black;
+}
 .pulse {
     overflow: visible;
-    position: relative;
+    position: absolute;
     transition: opacity .5s, transform .3s;
     animation: pulse-animation 0.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    animation-duration: 2s;
 }
 @keyframes pulse-animation {
     0% {
-        opacity: 1;
+        opacity: 0.75;
         transform: scale(1);
     }
     50% {
-        opacity: 0.5;
+        opacity: 1;
         transform: scale(1.5);
     }
     100% {
-        opacity: 1;
-        transform: scale(1.5);
+        opacity: 0.75;
+        transform: scale(1);
     }
 }

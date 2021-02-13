@@ -9,7 +9,7 @@ $query_services->execute();
 ?>
 
 <div class="container text-center row mx-auto">
-    <?php while ($row = $query_services->fetch(PDO::FETCH_ASSOC)) { ?>
+    <?php while ($row = $query_services->fetch(\PDO::FETCH_ASSOC)) { ?>
         <div class="col-9 row flip rounded shadow border mb-2 mx-auto px-0 my-3" id="section<?=$row['section']?>">
             <div class="col-12 py-1 px-0">
                 <h2><small class="fas <?=$row['icon']?>"></small> <?=$row['titre']?> <!--<small class="fas fa-caret-down"></small> --> </h2>

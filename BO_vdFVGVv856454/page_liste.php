@@ -26,7 +26,7 @@ $query_images->execute();
     </thead>
     <tbody>
     <?php
-    while ($row = $query_images->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $query_images->fetch(\PDO::FETCH_ASSOC)) {
         echo
         '<tr>
             <td><a href="../' . strtolower(str_to_noaccent($row['titre_lien'])) . '" class="fas fa-link"></a></td>

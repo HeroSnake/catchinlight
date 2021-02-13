@@ -7,12 +7,11 @@ $query_images = $bdd->prepare("SELECT * FROM pages WHERE id = $page_id");
 $query_images->execute();
 $titre; $lien; $image; $visible;
 
-while ($row = $query_images->fetch(PDO::FETCH_ASSOC)) {
-    $titre = $row['nom'];
-    $lien = $row['titre_lien'];
-    $image = $row['image'];
-    $visible = $row['visible'];
-}
+$result = $query_images->fetch(\PDO::FETCH_ASSOC);
+$titre = $result['nom'];
+$lien = $result['titre_lien'];
+$image = $result['image'];
+$visible = $result['visible'];
 ?>
 <form class="text-center text-white" action="page_update.php" method="post">
     <input name="page_id" type="hidden" value="<?= $page_id ?>">

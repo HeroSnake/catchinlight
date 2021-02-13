@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
         $ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
         $target_dir = $_POST["location"];
-        $category_id = $_POST["category_id"];
+        $gallery_id = $_POST["gallery_id"];
         $target_file = $target_dir . basename($file_name);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -51,9 +51,9 @@ if(isset($_POST['submit'])){
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($file_tmp, $target_file)) {
-                $insert_img = "INSERT INTO image (category_id) VALUES (?)";
+                $insert_img = "INSERT INTO image (gallery_id,extension) VALUES (?,?)";
                 $stmt= $bdd->prepare($insert_img);
-                $stmt->execute([$category_id]);
+                $stmt->execute([$gallery_id,$ext]);
                 rename($target_file, $target_dir.$bdd->lastInsertId().'.'.$ext);
                 echo "The file ". htmlspecialchars(basename($file_name)). " has been uploaded.<br>";
                 echo 'TEST';

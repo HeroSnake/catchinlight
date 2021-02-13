@@ -2,7 +2,7 @@
 $titre_page = "Liste des galleries";
 require_once "core_BO.php";
 require_once "php_functions.php";
-$query_images = $bdd->prepare("SELECT * FROM categorie");
+$query_images = $bdd->prepare("SELECT * FROM galleries");
 $query_images->execute();
 ?>
 <script type="text/javascript">
@@ -26,7 +26,7 @@ $query_images->execute();
     </thead>
     <tbody>
     <?php
-    while ($row = $query_images->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $query_images->fetch(\PDO::FETCH_ASSOC)) {
         echo
         '<tr>
             <td><a href="../' . strtolower(str_to_noaccent($row['titre'])) . '" class="fas fa-link"></a></td>

@@ -1,6 +1,6 @@
 <?php
 require_once "core_BO.php";
-$categorie_id = $_GET['cat'];
+$gallery_id = $_GET['cat'];
 $page = $_GET['page'];
 
 //Supprime la page PHP
@@ -13,10 +13,10 @@ array_map( 'unlink', array_filter((array) glob("../img/". $page ."/*") ) );
 rmdir('../img/' . $page);
 
 //Supprimer la page de la BDD
-$query_delete_page = $bdd->prepare("DELETE FROM categorie WHERE id = $categorie_id");
+$query_delete_page = $bdd->prepare("DELETE FROM galleries WHERE id = $gallery_id");
 $query_delete_page->execute();
 
-$query_delete_page = $bdd->prepare("DELETE FROM image WHERE category_id = $categorie_id");
+$query_delete_page = $bdd->prepare("DELETE FROM image WHERE gallery_id = $gallery_id");
 $query_delete_page->execute();
 
 header('location: gallery_liste.php');

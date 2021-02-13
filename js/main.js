@@ -1,42 +1,77 @@
 window.addEventListener('load', function() {
+    setTimeout(removeLoader); //wait for page load PLUS two seconds.
     //Display video thumbnail
     $videos = $('div .modal fade');
-
     $('.fade').each(function(){
         $(this).on('hidden.bs.modal', function (e) {
             // do something...
             $(this, 'iframe').attr("src", $(this, 'iframe').attr('src'));
         });
     });
-
     $('img').each(function() {
         $(this).attr("src", $(this).attr("original"));
     });
-
     // this will disable dragging of all images
     $("img").mousedown(function(e) {
         e.preventDefault()
     });
-
     // this will disable right-click on all images
     $("img").on("contextmenu", function(e) {
         return false;
     });
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
 
-    //Slide content on click
-    // $(".flip").click(function(){
-    //     $(this).find(".panel").slideToggle("slow");
-    // });
     registerSW();
+
+    var likes = document.getElementsByClassName('change-icon');
+    for (var i = 0; i < likes.length; i++) {
+        likes[i].addEventListener("click", function toggleLike(element){
+            var element = element.target.parentNode;
+            var gallery_id = element.name;
+            var image_id = element.id;
+            var liked;
+            //AJAX
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "controllers/like.php", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = this.responseText;
+                }
+            };
+            if(element.children[0].style.display != "none"){    //+1 LIKE
+                element.children[0].style.display = "none";
+                element.children[1].style.display = "inherit";
+                liked = true;
+                element.nextElementSibling.innerHTML = parseInt(element.nextElementSibling.innerHTML) + 1;
+            }else{                                              //-1 LIKE
+                element.children[0].style.display = "inherit";
+                element.children[1].style.display = "none";
+                liked = false;
+                element.nextElementSibling.innerHTML = parseInt(element.nextElementSibling.innerHTML) - 1;
+            }
+            var data = {like:liked,gallery_id:gallery_id,image_id:image_id};
+            xhttp.send(JSON.stringify(data));
+        });
+    }
 });
 
 window.addEventListener("cookieAlertAccept", function() {
     alert("cookies accepted")
 })
-
-function toggleLike(){
-    
-}
 
 async function registerSW(){
     if('serviceWorker' in navigator){
@@ -61,20 +96,10 @@ window.onclick = function(event) {
         }
     }
 }
-
-$(document).ready(function(){
-	$(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-            $('#back-to-top').fadeIn();
-        } else {
-            $('#back-to-top').fadeOut();
-        }
-    });
-    // scroll body to 0px on click
-    $('#back-to-top').click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 400);
-        return false;
-    });
-});
+function removeLoader(){
+    $( "#loadingDiv" ).fadeOut(500, function() {
+      // fadeOut complete. Remove the loading div
+      $( "#loadingDiv" ).remove(); //makes page more lightweight 
+      $( "#pageAwait" ).css('visibility', 'visible');
+  });  
+}

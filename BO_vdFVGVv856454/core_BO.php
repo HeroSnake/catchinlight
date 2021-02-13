@@ -15,9 +15,8 @@
     $nb_visitors;
     $query_nb_visitors = $bdd->prepare("SELECT visits FROM counter WHERE id=1");
     $query_nb_visitors->execute();
-    while ($row = $query_nb_visitors->fetch(PDO::FETCH_ASSOC)) {
-        $nb_visitors = $row['visits'];
-    }
+    $result = $query_nb_visitors->fetch(\PDO::FETCH_ASSOC);
+    $nb_visitors = $result['visits'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -153,8 +153,6 @@ ol li:hover a {
 }
 .menu img {
     height: 104%;
-    position: absolute;
-    left: 0;
 }
 .textMenu {
     color: white;
@@ -232,8 +230,6 @@ footer {
     transition: all 0.4s ease-in-out;
 }
 .hovereffect img {
-    display: block;
-    position: relative;
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
@@ -371,10 +367,6 @@ h2{
 .btnTop{
     z-index: 10;
 }
-.fa-heart{
-    position: absolute;
-    z-index: 10;
-    color: rgb(184, 184, 184);
-    margin: 20px;
-    text-shadow: 2px 2px 2px black;
+#pageAwait { 
+    visibility: hidden;
 }

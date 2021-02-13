@@ -19,11 +19,10 @@
     
         $count = 0;
 
-        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $count ++;
-            $pseudo_bdd = $row['pseudo'];
-            $mpd_bdd = $row['mdp'];
-        }
+        $result = $sql->fetch(\PDO::FETCH_ASSOC);
+        $count ++;
+        $pseudo_bdd = $result['pseudo'];
+        $mpd_bdd = $result['mdp'];
         
         // if result matched $myusername and $mypassword, table row must be 1 row
         // if($count == 1 && password_verify($mypassword, password_hash($_POST['mdp'], PASSWORD_BCRYPT))) {

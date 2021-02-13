@@ -7,9 +7,8 @@ require_once "corePage.php";
 $cle;
 $query_pages = $bdd->prepare("SELECT * FROM cles");
 $query_pages->execute();
-while ($row = $query_pages->fetch(PDO::FETCH_ASSOC)) { 
-    $cle = $row['value'];
-}
+$result = $query_pages->fetch(\PDO::FETCH_ASSOC);
+$cle = $result['value'];
 
 if(isset($_GET['mailsent']) && $_GET['mailsent'] == 1){ ?>
     <div class="alert alert-success mx-auto text-center" role="alert">
@@ -64,12 +63,6 @@ if(isset($_GET['mailsent']) && $_GET['mailsent'] == 1){ ?>
         </div>
         <div class="col-md-3 text-center">
             <ol class="list-unstyled mb-0">
-                <!-- <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                    <p>San Francisco, CA 94126, USA</p>
-                </li>
-                <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>+ 01 234 567 89</p>
-                </li> -->
                 <li>
                     <a class="link" href="mailto:catchin.light@gmail.com?subject=Demande d'informations" target="_self" data-content="catchin.light@gmail.com" data-type="mail">
                     <i class="fas fa-envelope mx-auto fa-3x"></i><br>catchin.light@gmail.com</a>

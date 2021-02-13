@@ -9,7 +9,7 @@ $query_pages = $bdd->prepare("SELECT * FROM pages");
 $query_pages->execute();
 ?>
 <div class="container">
-    <?php while ($row = $query_pages->fetch(PDO::FETCH_ASSOC)) { 
+    <?php while ($row = $query_pages->fetch(\PDO::FETCH_ASSOC)) { 
             if($row['visible'] == 1){?>
                 <div class="col-md-11 mx-auto p-0 mb-4 section_main">                
                     <a href="<?= $row['titre_lien'] ?>">
