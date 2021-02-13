@@ -1,6 +1,7 @@
 @font-face {
     font-family: "Caviar Dreams";
     src: url('../fonts/CaviarDreams.ttf');
+    font-display: swap;
 }
 * {
     font-family: "Caviar Dreams";
