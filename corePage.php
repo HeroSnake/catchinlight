@@ -63,7 +63,6 @@ if (isset($pageName)) {
     <meta name="description" content="Catchin'Light - <?= $meta_description ?>" />
     <meta name="author" content="Florent SYX, Maxime Brisson" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- BOOSTRAP -->
