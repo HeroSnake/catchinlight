@@ -16,7 +16,7 @@ $gallery_name = $sth->fetchColumn();
         if(isset($_COOKIE[$image["id"]])){
             $liked = true;
         }?>
-        <div>
+        <div class="overflow-hidden">
             <a class="change-icon" id="<?=$image["id"]?>" name="<?=$id_gallery?>">
                 <i class="far fa-heart fa-lg" <?php if($liked){?> style="display: none;" <?php }?>></i>
                 <i class="fas fa-heart fa-lg pulse text-danger" <?php if(!$liked){?> style="display: none;" <?php }?>></i>
