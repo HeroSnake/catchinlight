@@ -3,6 +3,7 @@ $pageName = basename(__FILE__);
 $titre_page = "Mentions Légales";
 $meta_description = "Mentions Légales du site";
 require_once "corePage.php";
+
 ?>
 
 <div class="container text-left mx-auto col-9 my-4">

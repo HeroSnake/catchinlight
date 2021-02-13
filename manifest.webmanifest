@@ -9,7 +9,7 @@
         "sizes": "150x150"
       }
     ],
-    "start_url": "http://localhost/catchinlight/",
+    "start_url": "https://catchin-light.com/",
     "background_color": "#283034",
     "display": "standalone",
     "theme_color": "#283034"
