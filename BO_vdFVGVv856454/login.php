@@ -23,10 +23,8 @@
         $count ++;
         $pseudo_bdd = $result['pseudo'];
         $mpd_bdd = $result['mdp'];
-        
-        // if result matched $myusername and $mypassword, table row must be 1 row
-        // if($count == 1 && password_verify($mypassword, password_hash($_POST['mdp'], PASSWORD_BCRYPT))) {
-        if($count == 1 && ($mdp == $mpd_bdd)) {
+
+        if($count == 1 && (password_verify('JJjertutTra7trR78DDs9w!749a', $mpd_bdd))) {
             $_SESSION['myusername']="myusername";
             $_SESSION['login_user'] = $pseudo_bdd;
             header("location: page_liste");
