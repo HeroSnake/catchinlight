@@ -24,7 +24,7 @@
         $pseudo_bdd = $result['pseudo'];
         $mpd_bdd = $result['mdp'];
 
-        if($count == 1 && (password_verify('JJjertutTra7trR78DDs9w!749a', $mpd_bdd))) {
+        if($count == 1 && (password_verify($mdpBO, $mpd_bdd))) {
             $_SESSION['myusername']="myusername";
             $_SESSION['login_user'] = $pseudo_bdd;
             header("location: gallery_liste");

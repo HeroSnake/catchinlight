@@ -12,7 +12,8 @@
     $url = strtolower(str_to_noaccent($result['titre']));
     $image = $result['lien'];
     $visible = $result['visible'];
-    $upload_loc = '../img/' . $result['nom_gallery'] . '/';
+    $upload_loc_menu = 'img/menu/';
+    $upload_loc_gallery = '../img/' . $result['nom_gallery'] . '/';
     $colonnes = $result['columns'];
     $css_gallery = "<link rel='stylesheet' href='../css/grid_img_$colonnes.css'>";
 
@@ -47,15 +48,17 @@
             <form class="border rounded border-dark my-2 text-center" action="upload.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="imageMenu">Image Menu :</label>
-                    <input id="image_picker" onchange="update_picture()" type="file" name="imageMenu" accept="image/*" required></input>
+                    <input id="image_picker" type="file" name="imageMenu" accept="image/*" required></input>
+                    <input type="hidden" value="<?=$upload_loc_menu?>" name="location">
+                    <input type="hidden" value="<?=$gallery_id?>" name="gallery_id">
                 </div>
                 <input class="btn" type="submit" value="Changer" name="submit">
             </form>
             <form class="border rounded border-dark my-2 text-center" action="upload.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                <label for="filesToUpload">Upload images :</label>
+                    <label for="filesToUpload">Upload images :</label>
                     <input type="file" name="filesToUpload[]" id="filesToUpload" multiple required>
-                    <input type="hidden" value="<?=$upload_loc?>" name="location">
+                    <input type="hidden" value="<?=$upload_loc_gallery?>" name="location">
                     <input type="hidden" value="<?=$gallery_id?>" name="gallery_id">
                 </div>
                 <input class="btn" type="submit" value="Uploader" name="submit">
