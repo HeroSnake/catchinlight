@@ -9,13 +9,6 @@
 body {
     background-color: #283034;
     margin: 0;
-    user-select: none;
-}
-img {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
 }
 .dropdown-divider{
     margin: 0 50px;
@@ -138,7 +131,6 @@ ol li:hover a {
 .show {
     display: block;
 }
-
 /* MENU PHOTOS */
 .conteneurMenu {
     text-align: center;
@@ -165,7 +157,6 @@ ol li:hover a {
     z-index: 1;
     text-align: center;
 }
-
 /* FOOTER */
 footer {
     background-color: #1313138a;
@@ -174,7 +165,6 @@ footer {
 .iconsFooter {
     display: none;
 }
-
 /* PAGE ACCUEIL */
 .accueil {
     display: flex;
@@ -205,7 +195,6 @@ footer {
 .signature {
     text-align: right;
 }
-
 /* PHOTOS MENU EFFECTS */
 .hovereffect {
     overflow: hidden;
@@ -268,7 +257,6 @@ footer {
     transform: scale(1);
     background-color: rgba(0,0,0,0.4);
 }
-
 /* MENU INDEX */
 .section_main{
     height: 15vw;
@@ -332,7 +320,6 @@ footer {
     -webkit-transform: translatey(0);
     transform: translatey(0);
 }
-
 .centerImage{
     position: absolute;
     left: 50%;
@@ -341,16 +328,13 @@ footer {
     -webkit-transform: translateY(-50%) translateX(-50%);
     transform: translateY(-50%) translateX(-50%);
 }
-
 a h2 :hover{
     text-decoration: none;
 }
-
 .panel {
     padding: 50px 7vw;
     /* display: none; */
 }
-
 h2{
     color: white;
 }

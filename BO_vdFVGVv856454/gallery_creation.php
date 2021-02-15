@@ -18,9 +18,9 @@ require_once "core_BO.php";
                     <label for="image">Image Menu :</label>
                     <input id="image_picker" onchange="update_picture('G')" type="file" name="image" accept="image/*" required>
                 </div>
-                <div class="form-group">
-                    <label for="visible">Page visible :</label>
-                    <input name="visible" type="checkbox" checked></input>
+                <div class="form-group custom-control custom-checkbox">
+                    <input type="checkbox" id="visible" name="visible" class="custom-control-input" checked></input>
+                    <label class="custom-control-label" for="visible">Page visible</label>
                 </div>
                 <input class="btn" id="buttonSubmit" type="submit" value="Créer"></input>
             </form>
