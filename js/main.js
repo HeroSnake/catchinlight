@@ -1,4 +1,5 @@
 window.addEventListener('load', function() {
+    registerSW();
     setTimeout(removeLoader); //wait for page load PLUS two seconds.
     //Display video thumbnail
     $videos = $('div .modal fade');
@@ -35,7 +36,6 @@ window.addEventListener('load', function() {
     });
 
     registerSW();
-
     var likes = document.getElementsByClassName('change-icon');
     for (var i = 0; i < likes.length; i++) {
         likes[i].addEventListener("click", function toggleLike(element){
@@ -68,10 +68,6 @@ window.addEventListener('load', function() {
         });
     }
 });
-
-// window.addEventListener("cookieAlertAccept", function() {
-//     alert("cookies accepted")
-// })
 
 async function registerSW(){
     if('serviceWorker' in navigator){

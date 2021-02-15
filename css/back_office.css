@@ -1,22 +1,16 @@
 /* BASIC */
-
-html {
-    background-color: #56baed;
-  }
-  
-  body {
-    font-family: "Poppins", sans-serif;
+body {
     height: 100vh;
-  }
-  
-  a {
+}
+
+a {
     color: #92badd;
     display:inline-block;
     text-decoration: none;
     font-weight: 400;
-  }
-  
-  h2 {
+}
+
+h2 {
     text-align: center;
     font-size: 16px;
     font-weight: 600;
@@ -24,11 +18,11 @@ html {
     display:inline-block;
     margin: 40px 8px 10px 8px; 
     color: #cccccc;
-  }
-  
-  /* STRUCTURE */
-  
-  .wrapper {
+}
+
+/* STRUCTURE */
+
+.wrapper {
     display: flex;
     align-items: center;
     flex-direction: column; 
@@ -36,9 +30,9 @@ html {
     width: 100%;
     min-height: 100%;
     padding: 20px;
-  }
-  
-  #formContent {
+}
+
+#formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
@@ -50,31 +44,31 @@ html {
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align: center;
-  }
-  
-  #formFooter {
+}
+
+#formFooter {
     background-color: #f6f6f6;
     border-top: 1px solid #dce8f1;
     padding: 25px;
     text-align: center;
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
-  }
-  
-  /* TABS */
-  
-  h2.inactive {
+}
+
+/* TABS */
+
+h2.inactive {
     color: #cccccc;
-  }
-  
-  h2.active {
+}
+
+h2.active {
     color: #0d0d0d;
     border-bottom: 2px solid #5fbae9;
-  }
-  
-  /* FORM TYPOGRAPHY*/
-  
-  input[type=button], input[type=submit], input[type=reset]  {
+}
+
+/* FORM TYPOGRAPHY*/
+
+input[type=button], input[type=submit], input[type=reset], button[type=button] {
     background-color: #56baed;
     border: none;
     color: white;
@@ -91,21 +85,21 @@ html {
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-  }
-  
-  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+}
+
+button[type=button]:hover, input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
     background-color: #437188;
-  }
-  
-  input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+}
+
+button[type=button]:active, input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
-  }
-  
-  input[type=text], input[type=password] {
+}
+
+input[type=text], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -124,95 +118,95 @@ html {
     transition: all 0.5s ease-in-out;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-  }
-  
-  input[type=text]:focus, input[type=password]:focus {
+}
+
+input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
-  }
-  
-  /* ANIMATIONS */
-  
-  /* Simple CSS3 Fade-in-down Animation */
-  .fadeInDown {
+}
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-  }
-  
-  @-webkit-keyframes fadeInDown {
+}
+
+@-webkit-keyframes fadeInDown {
     0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
     }
     100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
     }
-  }
-  
-  @keyframes fadeInDown {
+}
+
+@keyframes fadeInDown {
     0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
     }
     100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
     }
-  }
-  
-  /* Simple CSS3 Fade-in Animation */
-  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  
-  .fadeIn {
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
     opacity:0;
     -webkit-animation:fadeIn ease-in 1;
     -moz-animation:fadeIn ease-in 1;
     animation:fadeIn ease-in 1;
-  
+
     -webkit-animation-fill-mode:forwards;
     -moz-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
-  
+
     -webkit-animation-duration:1s;
     -moz-animation-duration:1s;
     animation-duration:1s;
-  }
-  
-  .fadeIn.first {
+}
+
+.fadeIn.first {
     -webkit-animation-delay: 0.4s;
     -moz-animation-delay: 0.4s;
     animation-delay: 0.4s;
-  }
-  
-  .fadeIn.second {
+}
+
+.fadeIn.second {
     -webkit-animation-delay: 0.6s;
     -moz-animation-delay: 0.6s;
     animation-delay: 0.6s;
-  }
-  
-  .fadeIn.third {
+}
+
+.fadeIn.third {
     -webkit-animation-delay: 0.8s;
     -moz-animation-delay: 0.8s;
     animation-delay: 0.8s;
-  }
-  
-  .fadeIn.fourth {
+}
+
+.fadeIn.fourth {
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
     animation-delay: 1s;
-  }
-  
+}
+
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
     display: block;
@@ -248,5 +242,32 @@ a:hover{
     background-color: #111;
 }
 label{
-  font-weight: bold;
+    font-weight: bold;
+}
+#photos{
+    width: 75%;
+    margin: auto;
+}
+img {
+    -webkit-user-drag: auto;
+    -khtml-user-drag: auto;
+    -moz-user-drag: auto;
+    -o-user-drag: auto;
+}
+.draggable, .supp-icon{
+    cursor: pointer;
+}
+.supp-icon{
+    position: absolute;
+    z-index: 10;
+    margin: 10px;
+    opacity: 0.6;
+    text-shadow: 2px 2px 2px black;
+}
+.supp-icon:hover{
+    opacity: 1;
+}
+.deleted{
+    -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2);
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
 }

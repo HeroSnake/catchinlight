@@ -1,9 +1,53 @@
-window.addEventListener('load', function() {
-    $('input[type=file]').change(function () {
-        console.log($(this));
+$(document).ready(function() {
+    var orderPicture = [];
+    var deletedPictures = [];
+    $(".droppable").sortable({
+        update: function( event, ui ) {
+            orderPicture = [];
+            orderPicture = Dropped(orderPicture);
+        }
+    });
+    var deletes = document.getElementsByClassName('supp-icon');
+    for (var i = 0; i < deletes.length; i++) {
+        deletes[i].addEventListener("click", function toggleDel(element){
+            var image_id = element.target.parentNode.id;
+            var image = element.target.parentNode.parentNode.childNodes[3];
+            if(deletedPictures.includes(image_id)){
+                //Désupprimer l'image
+                deletedPictures.splice(deletedPictures.indexOf(image_id), 1);
+                image.classList.remove("deleted");
+            }else{
+                //Supprimer l'image
+                deletedPictures.push(image_id);
+                image.classList.add("deleted");
+            }
+        });
+    }
+    document.getElementById('updatePictures').addEventListener("click", function(element){
+        var gallery_id = element.target.name;
+        //AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "../controllers/update_pictures.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = this.responseText;
+            }
+        };
+        var data = {orderPicture:orderPicture,gallery_id:gallery_id};
+        if (deletedPictures.length !== 0){
+            data = {orderPicture:orderPicture,gallery_id:gallery_id,deletedPictures:deletedPictures};
+        }
+        xhttp.send(JSON.stringify(data));
     });
 });
 
+function Dropped(orderPicture){
+    $(".draggable").each(function(){
+        orderPicture.push($(this).attr('id'));
+    });
+    return orderPicture;
+}
 function update_picture(type) {
     console.log(type);
     var string = "../img/menu/";
@@ -13,7 +57,6 @@ function update_picture(type) {
     var picture = document.getElementById("image_picker").files[0].name;
     document.getElementById("preview_img").setAttribute("src", string + picture);
 }
-
 function update_text(value){
     $('#preview_text').html(value.toUpperCase());
 }
