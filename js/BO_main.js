@@ -34,7 +34,7 @@ $(document).ready(function() {
                 var response = this.responseText;
             }
         };
-        var data = {order:orderPicture,gallery_id:gallery_id};
+        var data = {orderPicture:orderPicture,gallery_id:gallery_id};
         if (deletedPictures.length !== 0){
             data = {orderPicture:orderPicture,gallery_id:gallery_id,deletedPictures:deletedPictures};
         }
