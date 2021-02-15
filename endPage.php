@@ -51,7 +51,7 @@
             </footer>
             <!-- Footer -->
         </div>
-        <a id="back-to-top" href="#" class="btnTop btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+        <a id="back-to-top" href="#" class="btnTop btn btn-light btn-lg back-to-top" name="back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
         <!-- START Bootstrap-Cookie-Alert -->
         <div class="alert text-center cookiealert" role="alert">
             <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="https://cookiesandyou.com/" target="_blank">Learn more</a>

@@ -57,6 +57,7 @@ if (isset($pageName)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#333333"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="photographie, photographe, prestations services, paysage, photomontage, montage, vidéo, shooting, photo, gallerie" />
     <meta name="rights" content="© Maxime Brisson - Tous droits réservés" />
@@ -64,7 +65,7 @@ if (isset($pageName)) {
     <meta name="author" content="Florent SYX, Maxime Brisson" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <link rel=preload src="fonts/CaviarDreams.ttf">
     <!-- BOOSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -78,7 +79,9 @@ if (isset($pageName)) {
     <link rel="stylesheet" href="css/cookiealert.css?1">
     <link rel="stylesheet" href="css/pulse.css">
     <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/no_drag_select.css">
     <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icon/CL_icon.png">
 
     <script src="js/aa5b198ca0.js" crossorigin="anonymous"></script>
     <script src="js/cookiealert.js"></script>
