@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row text-white">
         <div class="col-sm m-3">
-            <form action="gallery_update.php" method="post">
+            <form action="gallery_update.php" class="border rounded border-dark my-2 text-center" method="post">
                 <h1>Edition gallerie : <a href="../<?=$url?>" target="_blank"><?=$titre?></a></h1>
                 <input name="gallery_id" type="hidden" value="<?= $gallery_id ?>">
                 <div class="form-group">
@@ -44,14 +44,14 @@
                 </div>
                 <input class="btn" id="buttonSubmit" value="Valider" type="submit"></input>
             </form>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            <form class="border rounded border-dark my-2 text-center" action="upload.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="imageMenu">Image Menu :</label>
                     <input id="image_picker" onchange="update_picture()" type="file" name="imageMenu" accept="image/*" required></input>
                 </div>
                 <input class="btn" type="submit" value="Changer" name="submit">
             </form>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            <form class="border rounded border-dark my-2 text-center" action="upload.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                 <label for="filesToUpload">Upload images :</label>
                     <input type="file" name="filesToUpload[]" id="filesToUpload" multiple required>
@@ -74,21 +74,23 @@
             </div>
         </div>
     </div>
-    <button name="<?=$gallery_id?>" id="updatePictures" type="button" class="btn btn-primary">Valider</button>
-    <section id="photos" class="droppable">
-        <?php
-        foreach($images as $image){
-            $link = "../img/$gallery_name/".$image["id"] . "." . $image["extension"];?>
-            <div class="overflow-hidden">
-                <div class="supp-icon" id="<?=$image["id"]?>">
-                    <i class="fas fa-trash-alt text-danger"></i>
-                </div>
-                <div id="<?=$image["id"]?>" class="draggable">
-                    <div class="lightbox">
-                        <img src="<?=$link?>" alt="img_gallery">
+    <div class="border rounded border-dark my-2 text-center">
+        <button name="<?=$gallery_id?>" id="updatePictures" type="button" class="btn btn-primary">Valider</button>
+        <section id="photos" class="droppable">
+            <?php
+            foreach($images as $image){
+                $link = "../img/$gallery_name/".$image["id"] . "." . $image["extension"];?>
+                <div class="overflow-hidden">
+                    <div class="supp-icon" id="<?=$image["id"]?>">
+                        <i class="fas fa-trash-alt text-danger"></i>
+                    </div>
+                    <div id="<?=$image["id"]?>" class="draggable">
+                        <div class="lightbox">
+                            <img src="<?=$link?>" alt="img_gallery">
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
-    </section>
+            <?php } ?>
+        </section>
+    </div>
 <div>
