@@ -69,10 +69,6 @@ window.addEventListener('load', function() {
     }
 });
 
-// window.addEventListener("cookieAlertAccept", function() {
-//     alert("cookies accepted")
-// })
-
 async function registerSW(){
     if('serviceWorker' in navigator){
         try{
