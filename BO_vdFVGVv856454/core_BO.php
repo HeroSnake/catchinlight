@@ -46,7 +46,7 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="../css/responsive.css">
 
     <script src="../js/aa5b198ca0.js" crossorigin="anonymous"></script>
-    <script src="../js/BO_main.js"></script>
+    <script src="../js/confirmation_modal.js"></script>
 
     <title>CatchinLight BO : <?= $titre_page ?></title>
 </head>

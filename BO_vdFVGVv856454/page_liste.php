@@ -1,17 +1,11 @@
 <?php
 $titre_page = "Liste des pages";
+$origin = "page";
 require_once "core_BO.php";
 require_once "php_functions.php";
 $query_images = $bdd->prepare("SELECT * FROM pages");
 $query_images->execute();
 ?>
-<script type="text/javascript">
-  function Supp(link) {
-    if (confirm('Confirmer la suppression ?')) {
-      document.location.href = link;
-    }
-  }
-</script>
 <table class="table table-striped table-dark">
     <thead>
         <tr>
@@ -25,24 +19,27 @@ $query_images->execute();
         </tr>
     </thead>
     <tbody>
-    <?php
-    while ($row = $query_images->fetch(\PDO::FETCH_ASSOC)) {
-        echo
-        '<tr>
-            <td><a href="../' . strtolower(str_to_noaccent($row['titre_lien'])) . '" class="fas fa-link"></a></td>
-            <td>' . $row['id'] . '</td>
-            <td>' . $row['nom'] . '</td>
-            <td>' . $row['titre_lien'] . '</td>
-            <td>' . $row['image'] . '</td>';
-            if ($row['visible'] == 1) {
-            echo '<td><i class="fas fa-eye"></i></td>';
-            } else {
-            echo '<td><i class="fas fa-eye-slash"></i></td>';
+        <?php
+            while ($row = $query_images->fetch(\PDO::FETCH_ASSOC)) {
+                echo
+                '<tr>
+                    <td><a href="../' . $row['titre_lien'] . '" class="btn btn-default text-white fas fa-link"></a></td>
+                    <td>' . $row['id'] . '</td>
+                    <td>' . $row['nom'] . '</td>
+                    <td>' . strtoupper($row['nom']) . '</td>
+                    <td>' . $row['image'] . '</td>';
+                    if ($row['visible'] == 1) {
+                        echo '<td><i class="fas fa-eye"></i></td>';
+                    } else {
+                        echo '<td><i class="fas fa-eye-slash"></i></td>';
+                    }
+                    echo '<td class="text-center">
+                        <a href="page_edit?cat=' . $row['id'] . '" class="btn btn-default text-white fas fa-edit"></a>
+                        <a class="btn btn-default hover-overlay fas fa-trash-alt text-danger btn-confirm" id="'.$row['id'].'" name="'.$row['titre_lien'].'"></a>
+                    </td>
+                <tr>';
             }
-            echo '<td class="text-right"><a href="page_edit?cat=' . $row['id'] . '" class="fas fa-edit"></a></td>
-            <td><a href="page_delete?cat=' . $row['id'] . '" class="fas fa-trash-alt"></a></td>
-        <tr>';
-    }
-    ?>
+        ?>
     </tbody>
 </table>
+<?php require_once 'confirmation_modal.php';

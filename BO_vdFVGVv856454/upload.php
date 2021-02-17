@@ -47,9 +47,9 @@ if(isset($_POST['submit'])){
                 // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($file_tmp, $target_file)) {
-                    $insert_img = "INSERT INTO image (gallery_id,extension) VALUES (?,?)";
+                    $insert_img = "INSERT INTO image (gallery_id,extension,position) VALUES (?,?,?)";
                     $stmt= $bdd->prepare($insert_img);
-                    $stmt->execute([$gallery_id,$ext]);
+                    $stmt->execute([$gallery_id,$ext,0]);
                     rename($target_file, $target_dir.$bdd->lastInsertId().'.'.$ext);
                     header('Location: ' . $_SERVER['HTTP_REFERER']);
                 } else {
