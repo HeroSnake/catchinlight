@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var orderPicture = [];
     var deletedPictures = [];
+    var elementClick;
     $(".droppable").sortable({
         update: function( event, ui ) {
             orderPicture = [];
@@ -23,25 +24,40 @@ $(document).ready(function() {
             }
         });
     }
-    document.getElementById('updatePictures').addEventListener("click", function(element){
-        var gallery_id = element.target.name;
-        //AJAX
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "../controllers/update_pictures.php", true);
-        xhttp.setRequestHeader("Content-Type", "application/json");
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-            }
-        };
-        var data = {orderPicture:orderPicture,gallery_id:gallery_id};
-        if (deletedPictures.length !== 0){
-            data = {orderPicture:orderPicture,gallery_id:gallery_id,deletedPictures:deletedPictures};
+    document.getElementById('updatePictures').addEventListener("click", (element) => {
+        elementClick = element;
+        if(deletedPictures.length !== 0){
+            $("#mi-modal").modal('show');
+        }else{
+            picturesAJAX(elementClick, orderPicture, deletedPictures);
         }
-        xhttp.send(JSON.stringify(data));
+    });
+    $("#modal-btn-si").on("click", function(){
+        picturesAJAX(elementClick, orderPicture, deletedPictures);
+        $("#mi-modal").modal('hide');
+    });
+    $("#modal-btn-no").on("click", function(){
+        $("#mi-modal").modal('hide');
     });
 });
-
+function picturesAJAX(element, orderPicture, deletedPictures){
+    var gallery_id = element.target.name;
+    //AJAX
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../controllers/update_pictures.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+            document.location.reload();
+        }
+    };
+    var data = {orderPicture:orderPicture,gallery_id:gallery_id};
+    if (deletedPictures.length !== 0){
+        data = {orderPicture:orderPicture,gallery_id:gallery_id,deletedPictures:deletedPictures};
+    }
+    xhttp.send(JSON.stringify(data));
+}
 function Dropped(orderPicture){
     $(".draggable").each(function(){
         orderPicture.push($(this).attr('id'));

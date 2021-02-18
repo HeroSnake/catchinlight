@@ -7,7 +7,7 @@
                         <button type="button" class="px-3 py-2 m-0" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="col-sm-10">
-                        <h5 class="modal-title" id="myModalLabel" name="<?=$origin?>">Confirmer suppression</h5>
+                        <h5 class="modal-title" id="myModalLabel" name="<?php if(isset($origin)){ echo $origin; }?>">Confirmer suppression</h5>
                     </div>
                 </div>
             </div>

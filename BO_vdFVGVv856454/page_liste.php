@@ -6,6 +6,7 @@ require_once "php_functions.php";
 $query_images = $bdd->prepare("SELECT * FROM pages");
 $query_images->execute();
 ?>
+<script src="../js/confirmation_modal.js"></script>
 <table class="table table-striped table-dark">
     <thead>
         <tr>

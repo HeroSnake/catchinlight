@@ -29,6 +29,7 @@ function modalConfirm(confirm, id, page, origin){
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var response = this.responseText;
+                document.location.reload();
             }
         };
         var data = {id:id,page:page};

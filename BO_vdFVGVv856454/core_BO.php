@@ -31,6 +31,9 @@ header("Pragma: no-cache");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet"> 
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
      <!-- BOOSTRAP -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -46,7 +49,6 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="../css/responsive.css">
 
     <script src="../js/aa5b198ca0.js" crossorigin="anonymous"></script>
-    <script src="../js/confirmation_modal.js"></script>
 
     <title>CatchinLight BO : <?= $titre_page ?></title>
 </head>
