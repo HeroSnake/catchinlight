@@ -1,6 +1,6 @@
 <?php
     require_once '../db_connection.php';
-    require_once "php_functions.php";
+    require_once "../controllers/php_functions.php";
     $titre_page = "Modifier une gallerie";
     $gallery_id = $_GET['cat'];
     $query_images = $bdd->prepare("SELECT * FROM galleries WHERE id = $gallery_id LIMIT 1");
@@ -24,14 +24,14 @@
 ?>
 <script src="../js/update_pictures.js"></script>
 <div class="container">
-    <div class="row text-white">
+    <div class="row text-white text-center">
         <div class="col-sm m-3">
-            <form action="gallery_update.php" class="border rounded border-dark my-2 text-center" method="post">
+            <form action="../controllers/gallery_update.php" class="border rounded border-dark my-2" method="post">
                 <h1>Edition gallerie : <a href="../<?=$url?>" target="_blank"><?=$titre?></a></h1>
                 <input name="gallery_id" type="hidden" value="<?= $gallery_id ?>">
                 <div class="form-group">
                     <label for="titre_page">Titre de la page :</label>
-                    <input id="text_picker" onchange="update_text(value)" name="titre_page" class="form-control-sm" type="text" placeholder="Titre de la page" value="<?= $titre ?>" maxlength="15" required>
+                    <input id="text_picker" name="titre_page" class="form-control-sm" type="text" placeholder="Titre de la page" value="<?= $titre ?>" maxlength="15" required>
                 </div>
                 <div class="form-group">
                     <label for="colonnes">Nombre colonnes :</label>
@@ -43,7 +43,7 @@
                 </div>
                 <input class="btn" id="buttonSubmit" value="Valider" type="submit"></input>
             </form>
-            <form class="border rounded border-dark my-2 text-center" action="upload.php" method="post" enctype="multipart/form-data">
+            <form class="border rounded border-dark my-2" action="../controllers/upload_update_gallery.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="imageMenu">Image Menu :</label>
                     <input id="image_picker" type="file" name="imageMenu" accept="image/*" required></input>
@@ -52,7 +52,7 @@
                 </div>
                 <input class="btn" type="submit" value="Changer" name="submit">
             </form>
-            <form class="border rounded border-dark my-2 text-center" action="upload.php" method="post" enctype="multipart/form-data">
+            <form class="border rounded border-dark my-2" action="../controllers/upload_update_gallery.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="filesToUpload">Upload images :</label>
                     <input type="file" name="filesToUpload[]" id="filesToUpload" multiple required>

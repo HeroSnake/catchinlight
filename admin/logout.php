@@ -16,6 +16,6 @@
 
    // Finally, destroy the session.
    if(session_destroy()) {
-      header("Location: login");
+      header("Location: login.php");
    }
 ?>

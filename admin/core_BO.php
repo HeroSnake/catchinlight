@@ -6,7 +6,7 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
     ob_start(); 
     require_once '../db_connection.php';
-    require_once 'session.php';
+    require_once '../controllers/session.php';
     function active($current_page)
     {
         $url_array =  explode('/', $_SERVER['REQUEST_URI']);
@@ -56,7 +56,7 @@ header("Pragma: no-cache");
 <body>
     <div class="content">
         <ul class="navbar navbar-expand-lg">
-            <li><a href="../index" class="<?php active('index'); ?>">Home</a></li>
+            <li><a href="../" class="<?php active('index'); ?>">Home</a></li>
             <div class="dropdown show bg-transparent">
                 <a class="text-light dropdown-toggle p-3 <?php active('gallery_creation'); ?> <?php active('gallery_liste'); ?>"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Galleries

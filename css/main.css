@@ -261,6 +261,10 @@ footer {
 .section_main{
     height: 15vw;
 }
+.section_main img{
+    height: 15vw;
+    object-fit: cover;
+}
 .hovereffect1 {
     width: 100%;
     height: 100%;

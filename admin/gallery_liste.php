@@ -2,7 +2,7 @@
 $titre_page = "Liste des galleries";
 $origin = "gallery";
 require_once "core_BO.php";
-require_once "php_functions.php";
+require_once "../controllers/php_functions.php";
 $query_images = $bdd->prepare("SELECT * FROM galleries");
 $query_images->execute();
 ?>

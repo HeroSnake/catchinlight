@@ -24,10 +24,10 @@ if(isset($_POST['submit'])){
                 $previous_image = $query_galleries->fetch(\PDO::FETCH_ASSOC)['lien'];
                 unlink('../'.$previous_image);
                 //UPDATE PHOTO IN BDD
-                $query_create_page = "UPDATE galleries SET lien=? WHERE id=?";
-                $stmt= $bdd->prepare($query_create_page);
+                $query = "UPDATE galleries SET lien=? WHERE id=?";
+                $stmt= $bdd->prepare($query);
                 $stmt->execute([$target_dir.$file_name, $gallery_id]);
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                header("location: ../admin/gallery_edit?cat=" . $gallery_id);
             } else {
                 echo "Sorry, there was an error uploading your file.<br>";
             }
