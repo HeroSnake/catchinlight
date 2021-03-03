@@ -5,9 +5,9 @@
             <!-- Footer -->
             <footer class="page-footer font-small blue pt-4 px-5">
                 <div class="footer-copyright text-center py-3 iconsFooter">
-                    <a href="https://www.instagram.com/maxime.brsn/" target="_blank"><i class="fab fa-instagram-square"></i></a>
-                    <a href="https://www.facebook.com/maxime.brisson.74/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.youtube.com/user/MrDrome74/" target="_blank"><i class="fab fa-youtube-square"></i></a>
+                    <a href="https://www.instagram.com/maxime.brsn/" target="_blank" rel="noreferrer"><i class="fab fa-instagram-square"></i></a>
+                    <a href="https://www.facebook.com/maxime.brisson.74/" target="_blank" rel="noreferrer"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.youtube.com/user/MrDrome74/" target="_blank" rel="noreferrer"><i class="fab fa-youtube-square"></i></a>
                 </div>
                 <div class="container-fluid text-center text-md-left">
                     <div class="row">
@@ -35,7 +35,7 @@
                                             <a class="link" href="mentions-legales">Mentions légales</a>
                                         </li>
                                         <li>
-                                            <a class="link" href="https://cookiesandyou.com/" target="_blank">C'est quoi un cookie ?</a>
+                                            <a class="link" href="https://cookiesandyou.com/" target="_blank" rel="noreferrer">C'est quoi un cookie ?</a>
                                         </li>
                                         <li>
                                             <a class="link" href="sitemap.xml">Plan du site</a>
@@ -51,10 +51,10 @@
             </footer>
             <!-- Footer -->
         </div>
-        <a id="back-to-top" href="#" class="btnTop btn btn-light btn-lg back-to-top" name="back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+        <a id="back-to-top" href="#" class="btnTop btn btn-light btn-lg back-to-top" aria-label="back-to-top" name="back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
         <!-- START Bootstrap-Cookie-Alert -->
         <div class="alert text-center cookiealert" role="alert">
-            <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="https://cookiesandyou.com/" target="_blank">Learn more</a>
+            <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="https://cookiesandyou.com/" target="_blank" rel="noreferrer">Learn more</a>
             <button type="button" class="btn btn-primary btn-sm acceptcookies">
                 I agree
             </button>

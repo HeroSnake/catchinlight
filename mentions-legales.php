@@ -8,7 +8,7 @@ require_once "corePage.php";
 <div class="container text-left mx-auto col-9 my-4">
     <h2>Informations légales</h2>
     <p>Merci de lire attentivement les présentes modalités d'utilisation du présent site avant de le parcourir. En vous connectant sur ce site, vous acceptez sans réserve les présentes modalités.</p>
-    <p><small>(Sur cette page, Catchin'Light est représenté par l'éditeur et <a class="link" href="https://catchin-light.com/about" target="_blank"><b>Maxime Brisson</b></a>)</small></p>
+    <p><small>(Sur cette page, Catchin'Light est représenté par l'éditeur et <a class="link" href="https://catchin-light.com/about" target="_blank" rel="noreferrer"><b>Maxime Brisson</b></a>)</small></p>
     <div id="section1">
         <h2>Editeur du site</h2>
         <p>
@@ -69,7 +69,7 @@ require_once "corePage.php";
             Les utilisateurs et visiteurs du site internet peuvent mettre en place un hyperlien en direction de ce site.
         </p>
         <p>
-            Pour toute demande d'autorisation ou d'information, veuillez nous contacter par email : catchin.light@gmail.com ou depuis la <a class="link" href="https://catchin-light.com/contact" target="_blank"><b>page de contact</b></a>.
+            Pour toute demande d'autorisation ou d'information, veuillez nous contacter par email : catchin.light@gmail.com ou depuis la <a class="link" href="https://catchin-light.com/contact" target="_blank" rel="noreferrer"><b>page de contact</b></a>.
         </p>
     </div>
     <div id="section8">
@@ -105,7 +105,7 @@ require_once "corePage.php";
     <div id="section12">
         <h2>Contactez-nous</h2>
         <p>
-            Catchin'Light est à votre disposition pour tous vos commentaires ou suggestions. Vous pouvez nous écrire en français par courrier électronique à : catchin.light@gmail.com ou depuis la <a class="link" href="https://catchin-light.com/contact" target="_blank"><b>page de contact</b></a>.
+            Catchin'Light est à votre disposition pour tous vos commentaires ou suggestions. Vous pouvez nous écrire en français par courrier électronique à : catchin.light@gmail.com ou depuis la <a class="link" href="https://catchin-light.com/contact" target="_blank" rel="noreferrer"><b>page de contact</b></a>.
         </p>
     </div>
 </div>

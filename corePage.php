@@ -98,9 +98,9 @@ if (isset($pageName)) {
 <body oncontextmenu="return false">
     <div class="icons">
         <ol>
-            <li><a href="https://www.instagram.com/maxime.brsn/" target="_blank"><i class="fab fa-instagram"></i> @maxime.brsn</a></li>
-            <li><a href="https://www.facebook.com/maxime.brisson.74/" target="_blank"><i class="fab fa-facebook-square"></i> Maxime Brisson</a></li>
-            <li><a href="https://www.youtube.com/channel/UCzYqRxe2fuowyvjZJyIyF5g/" target="_blank"><i class="fab fa-youtube-square"></i> Catchin' Light</a></li>
+            <li><a href="https://www.instagram.com/maxime.brsn/" target="_blank" rel="noreferrer"><i class="fab fa-instagram"></i> @maxime.brsn</a></li>
+            <li><a href="https://www.facebook.com/maxime.brisson.74/" target="_blank" rel="noreferrer"><i class="fab fa-facebook-square"></i> Maxime Brisson</a></li>
+            <li><a href="https://www.youtube.com/channel/UCzYqRxe2fuowyvjZJyIyF5g/" target="_blank" rel="noreferrer"><i class="fab fa-youtube-square"></i> Catchin' Light</a></li>
         </ol>
     </div>
     <div class="content">
