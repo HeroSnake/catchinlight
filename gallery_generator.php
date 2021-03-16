@@ -15,7 +15,7 @@ $sth_image->execute();
 $images = $sth_image->fetchAll(\PDO::FETCH_ASSOC);
 ?>
 <div class="container">
-    <div id="photos" class="row m-0" data-masonry='{"percentPosition": true }'>
+    <div id="photos" class="row m-0 grid">
         <?php
         foreach($images as $image){
             $link = "img/$gallery_name/".$image["id"] . "." . $image["extension"];
@@ -23,7 +23,7 @@ $images = $sth_image->fetchAll(\PDO::FETCH_ASSOC);
             if(isset($_COOKIE[$image["id"]])){
                 $liked = true;
             }?>
-            <div class="col-sm-6 col-lg-<?=$colonne?> overflow-hidden">
+            <div class="col-sm-6 col-lg-<?=$colonne?> overflow-hidden grid-item">
                 <a class="change-icon" id="<?=$image["id"]?>" name="<?=$id_gallery?>">
                     <i class="far fa-heart fa-lg" <?php if($liked){?> style="display: none;" <?php }?>></i>
                     <i class="fas fa-heart fa-lg pulse text-danger" <?php if(!$liked){?> style="display: none;" <?php }?>></i>
