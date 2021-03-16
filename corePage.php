@@ -76,7 +76,7 @@ if (isset($pageName)) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
  
     <link rel="stylesheet" href="css/gallery-grid.css">
-    <?php if(isset($css_gallery)){  echo $css_gallery;  }?>
+    <!-- <?php if(isset($css_gallery)){  echo $css_gallery;  }?> -->
 
     <link rel="icon" href="icon/CL_icon.png">
     <link rel="stylesheet" href="css/main.css?1">
@@ -91,6 +91,8 @@ if (isset($pageName)) {
     <script src="js/aa5b198ca0.js" crossorigin="anonymous"></script>
     <script src="js/cookiealert.js"></script>
     <script src="js/main.js"></script>
+    <!-- <script src="js/resize.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 
     <title>Catchin'Light : <?= $titre_page ?></title>
 </head>

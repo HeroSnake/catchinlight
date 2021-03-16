@@ -94,8 +94,8 @@ window.onclick = function(event) {
 }
 function removeLoader(){
     $( "#loadingDiv" ).fadeOut(500, function() {
-      // fadeOut complete. Remove the loading div
-      $( "#loadingDiv" ).remove(); //makes page more lightweight 
-      $( "#pageAwait" ).css('visibility', 'visible');
-  });  
+        // fadeOut complete. Remove the loading div
+        $( "#loadingDiv" ).remove(); //makes page more lightweight 
+        $( "#pageAwait" ).css('visibility', 'visible');
+    });  
 }

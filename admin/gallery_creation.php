@@ -12,7 +12,7 @@ require_once "core_BO.php";
                 </div>
                 <div class="form-group">
                     <label for="colonnes">Nombre colonnes :</label>
-                    <input id="colonne" name="colonnes" type="number" value="3" min="2" max="5" required></input>
+                    <input id="colonne" name="colonnes" type="number" value="3" min="1" max="4" required></input>
                 </div>
                 <div class="form-group">
                     <label for="image">Image Menu :</label>

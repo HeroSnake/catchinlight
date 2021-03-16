@@ -15,7 +15,7 @@
     $upload_loc_menu = 'img/menu/';
     $upload_loc_gallery = '../img/' . $result['nom_gallery'] . '/';
     $colonnes = $result['columns'];
-    $css_gallery = "<link rel='stylesheet' href='../css/grid_img_$colonnes.css'>";
+    $colonne = floor(12 / $colonnes);
 
     $sth = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $gallery_id ORDER BY position");
     $sth->execute();
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="colonnes">Nombre colonnes :</label>
-                    <input id="colonne" name="colonnes" type="number" value="<?=$colonnes?>" min="2" max="5" required></input>
+                    <input id="colonne" name="colonnes" type="number" value="<?=$colonnes?>" min="1" max="4" required></input>
                 </div>
                 <div class="form-group">
                     <label for="visible">Page visible :</label>
@@ -77,11 +77,11 @@
     </div>
     <div class="border rounded border-dark my-2 text-center">
         <button name="<?=$gallery_id?>" id="updatePictures" type="button" class="btn btn-primary">Valider</button>
-        <section id="photos" class="droppable">
+        <section id="photos" class="droppable grid">
             <?php
             foreach($images as $image){
                 $link = "../img/$gallery_name/".$image["id"] . "." . $image["extension"];?>
-                <div class="overflow-hidden">
+                <div class="col-sm-6 col-lg-<?=$colonne?> p-0 grid-item" id="<?=$image["id"]?>">
                     <div class="supp-icon" id="<?=$image["id"]?>">
                         <i class="fas fa-trash-alt text-danger"></i>
                     </div>
@@ -96,3 +96,4 @@
     </div>
     <?php require_once 'confirmation_modal.php';?>
 <div>
+<script src="../js/packery-docs.min.js"></script>

@@ -2,12 +2,32 @@ $(document).ready(function() {
     var orderPicture = [];
     var deletedPictures = [];
     var elementClick;
-    $(".droppable").sortable({
-        update: function( event, ui ) {
-            orderPicture = [];
-            orderPicture = Dropped(orderPicture);
-        }
+    var columns = 1200 / document.getElementById('colonne').value;
+    console.log(columns);
+    // external js: packery.pkgd.js, draggabilly.pkgd.js
+    var pckry = new Packery( '.grid', {
+        itemSelector: '.grid-item',
+        columnWidth: columns
     });
+    pckry.getItemElements().forEach( function( itemElem ) {
+        var draggie = new Draggabilly( itemElem );
+        pckry.bindDraggabillyEvents( draggie );
+    });
+
+    // ON DROP
+    pckry.on( 'dragItemPositioned', () => {
+        orderItems();
+    });
+
+    orderItems = function() {
+        var itemElems = pckry.getItemElements();
+        orderPicture = [];
+        $(itemElems).each(function(i, itemElem) {
+            orderPicture.push(itemElem.id);
+        });
+    };
+
+    // GESTION  SUPPRESSION IMAGE
     var deletes = document.getElementsByClassName('supp-icon');
     for (var i = 0; i < deletes.length; i++) {
         deletes[i].addEventListener("click", function toggleDel(element){

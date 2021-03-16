@@ -245,7 +245,6 @@ label{
     font-weight: bold;
 }
 #photos{
-    width: 75%;
     margin: auto;
 }
 img {
@@ -270,4 +269,26 @@ img {
 .deleted{
     -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2);
     filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
+}
+
+.grid {
+    background: rgba(0, 0, 0, 0.322);
+    max-width: 1200px;
+}
+
+  /* clear fix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.grid-item.is-dragging{
+    opacity: 0.6;
+    z-index: 2;
+}
+.packery-drop-placeholder {
+    outline: 3px dashed hsla(0, 100%, 50%, 0.5);
+    outline-offset: -6px;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
 }

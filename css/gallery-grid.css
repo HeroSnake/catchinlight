@@ -1,6 +1,5 @@
 .tz-gallery .lightbox img {
     width: 100%;
-    margin: 2.5px 0;
     transition: 0.2s ease-in-out;
     box-shadow: 0 2px 3px rgba(0,0,0,0.2);
 }
@@ -18,20 +17,13 @@
     background-color: transparent !important;
 }
 
-
-@media(max-width: 768px) {
-    body {
-        padding: 0;
-    }
-
-    .container.gallery-container {
-        border-radius: 0;
-    }
+.overflow-hidden{
+    padding: 2px;
+    margin: 0;
 }
 
- #photos img {
-   /* Just in case there are inline attributes */
-   width: 100% !important;
-   height: auto !important;
- }
- 
+#photos img {
+    /* Just in case there are inline attributes */
+    width: 100% !important;
+    height: auto !important;
+}
