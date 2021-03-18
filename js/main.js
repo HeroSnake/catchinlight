@@ -12,6 +12,9 @@ window.addEventListener('load', function() {
     $('img').each(function() {
         $(this).attr("src", $(this).attr("original"));
     });
+
+
+    //////// DISABLE EVENTS ////////
     // this will disable dragging of all images
     $("img").mousedown(function(e) {
         e.preventDefault()
@@ -20,6 +23,19 @@ window.addEventListener('load', function() {
     $("img").on("contextmenu", function(e) {
         return false;
     });
+    //Prevent open in new tab image gallery
+    $('.lightbox').click(function (e){  //USING CRTL + CLICK
+        if (e.ctrlKey) {
+            return false;
+        }
+    });
+    lightbox = [].slice.call(document.getElementsByClassName('lightbox'));
+    lightbox.forEach(element => element.addEventListener("auxclick", (event) => {
+        if (event.button === 1) event.preventDefault();
+    }));
+
+
+    //////// SCROLL EFFECT ////////
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
             $('#back-to-top').fadeIn();
@@ -35,7 +51,8 @@ window.addEventListener('load', function() {
         return false;
     });
 
-    registerSW();
+
+    //////// LIKE EFFECT ////////
     var likes = document.getElementsByClassName('change-icon');
     for (var i = 0; i < likes.length; i++) {
         likes[i].addEventListener("click", function toggleLike(element){
@@ -68,14 +85,14 @@ window.addEventListener('load', function() {
         });
     }
 
-    //MASONRY
+
+    //////// MASONRY ////////
     var elem = document.querySelector('.grid');
     var msnry = new Masonry( elem, {
     // options
     itemSelector: '.grid-item',
     columnWidth: 200
     });
-
     // element argument can be a selector string
     //   for an individual element
     var msnry = new Masonry( '.grid', {
