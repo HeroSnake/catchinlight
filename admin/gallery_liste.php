@@ -7,7 +7,7 @@ $query_images = $bdd->prepare("SELECT * FROM galleries");
 $query_images->execute();
 ?>
 <script src="../js/confirmation_modal.js"></script>
-<table class="table table-striped table-dark">
+<table class="table table-striped table-dark table_bo">
     <thead>
         <tr>
             <th>Lien</th>
@@ -15,7 +15,8 @@ $query_images->execute();
             <th>Titre</th>
             <th>Nom Menu</th>
             <th>Image</th>
-            <th style="width:1px;">Visible</th>
+            <th>Visible</th>
+            <th>Sous-catégorie</th>
             <th class="text-center" colspan="2">Outils de gestion</th>
         </tr>
     </thead>
@@ -28,13 +29,24 @@ $query_images->execute();
                     <td>' . $row['id'] . '</td>
                     <td>' . $row['Nom'] . '</td>
                     <td>' . $row['titre'] . '</td>
-                    <td>' . $row['lien'] . '</td>';
+                    <td><img class="table_image" src="../'.$row['lien'].'"/></td>
+                    <td class="text-center">';
                     if ($row['visible'] == 1) {
-                        echo '<td><i class="fas fa-eye"></i></td>';
+                        echo '<a class="btn btn-default fas fa-eye toggleVisibility" name="'.$row['id'].'" title="0"></a>';
                     } else {
-                        echo '<td><i class="fas fa-eye-slash"></i></td>';
+                        echo '<a class="btn btn-default fas fa-eye-slash toggleVisibility" name="'.$row['id'].'" title="1"></a>';
                     }
-                    echo '<td class="text-center">
+                    echo '
+                    </td>
+                    <td class="text-center">';
+                    if ($row['sub_cat'] == 1) {
+                        echo '<input type="checkbox" value="" class="toggleSubCat" name="'.$row['id'].'" checked>';
+                    } else {
+                        echo '<input type="checkbox" value="" class="toggleSubCat" name="'.$row['id'].'">';
+                    }
+                    echo '
+                    </td>
+                    <td class="text-center">
                         <a href="gallery_edit?cat=' . $row['id'] . '" class="btn btn-default text-white fas fa-edit"></a>
                         <a class="btn btn-default hover-overlay fas fa-trash-alt text-danger btn-confirm" id="'.$row['id'].'" name="'.$row['nom_gallery'].'"></a>
                     </td>
@@ -43,4 +55,5 @@ $query_images->execute();
         ?>
     </tbody>
 </table>
+<a href="gallery_creation" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une gallerie</a>
 <?php require_once 'confirmation_modal.php';

@@ -292,3 +292,11 @@ img {
     -webkit-transition: -webkit-transform 0.2s;
     transition: transform 0.2s;
 }
+
+/* TABLES */
+.table_image{
+    height: 100px;
+}
+.table_bo td {
+    vertical-align: inherit;
+}

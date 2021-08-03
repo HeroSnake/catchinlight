@@ -43,4 +43,5 @@ $query_images->execute();
         ?>
     </tbody>
 </table>
+<a href="page_creation" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une Page</a>
 <?php require_once 'confirmation_modal.php';

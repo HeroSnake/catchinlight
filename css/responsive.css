@@ -1,4 +1,9 @@
 /* Smaller Screens */
+@media only screen and (max-width: 1700px) {
+    .icons {
+        left: 86.5vw;
+    }
+}
 @media only screen and (max-width: 1600px) {
     .content {
         width: 75%;
@@ -23,6 +28,12 @@
     }
     .section_main{
         height: 22vw;
+    }
+    .profile-card-2 .profile-name {
+        opacity: 1;
+    }
+    .profile-card-2 img {
+        filter: brightness(50%);
     }
 }
 @media only screen and (max-width: 1000px) {

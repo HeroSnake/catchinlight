@@ -4,23 +4,23 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
-    ob_start(); 
-    require_once '../db_connection.php';
-    require_once '../controllers/session.php';
-    function active($current_page)
-    {
-        $url_array =  explode('/', $_SERVER['REQUEST_URI']);
-        $url = end($url_array);
-        if ($current_page == $url) {
-            echo 'active'; //class name in css 
-        }
+ob_start();
+require_once '../db_connection.php';
+require_once '../controllers/session.php';
+function active($current_page)
+{
+    $url_array =  explode('/', $_SERVER['REQUEST_URI']);
+    $url = end($url_array);
+    if ($current_page == $url) {
+        echo 'active'; //class name in css 
     }
+}
 
-    //VISITEURS - avec Cookies
-    $query_nb_visitors = $bdd->prepare("SELECT visits FROM counter WHERE id=1");
-    $query_nb_visitors->execute();
-    $result = $query_nb_visitors->fetch(\PDO::FETCH_ASSOC);
-    $nb_visitors = $result['visits'];
+//VISITEURS - avec Cookies
+$query_nb_visitors = $bdd->prepare("SELECT visits FROM counter WHERE id=1");
+$query_nb_visitors->execute();
+$result = $query_nb_visitors->fetch(\PDO::FETCH_ASSOC);
+$nb_visitors = $result['visits'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,8 +31,8 @@ header("Pragma: no-cache");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet"> 
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
     <script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
@@ -49,6 +49,7 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="../css/gallery-grid.css">
 
     <script src="../js/aa5b198ca0.js" crossorigin="anonymous"></script>
+    <script src="../js/update_gallery.js" crossorigin="anonymous"></script>
 
     <title>CatchinLight BO : <?= $titre_page ?></title>
 </head>
@@ -57,27 +58,11 @@ header("Pragma: no-cache");
     <div class="content">
         <ul class="navbar navbar-expand-lg">
             <li><a href="../" class="<?php active('index'); ?>">Home</a></li>
-            <div class="dropdown show bg-transparent">
-                <a class="text-light dropdown-toggle p-3 <?php active('gallery_creation'); ?> <?php active('gallery_liste'); ?>"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Galleries
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                    <a href="gallery_creation" class="dropdown-item bg-dark text-light">Créer une gallerie</a>
-                    <a href="gallery_liste" class="dropdown-item bg-dark text-light">Liste des galleries</a>
-                </div>
-            </div>
-            <div class="dropdown show bg-transparent">
-                <a class="text-light dropdown-toggle p-3 <?= active('page_creation'); ?> <?= active('page_liste'); ?>" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pages
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                    <a href="page_creation" class="dropdown-item bg-dark text-light">Créer une page</a>
-                    <a href="page_liste" class="dropdown-item bg-dark text-light">Liste des pages</a>
-                </div>
-            </div>
-            <?php if($logged === false){ ?>
+            <li><a href="gallery_liste" class="<?php active('gallery_creation'); ?> <?php active('gallery_liste'); ?>">Galleries</a></li>
+            <li><a href="page_liste" class="<?= active('page_creation'); ?> <?= active('page_liste'); ?>">Pages</a></li>
+            <?php if ($logged === false) { ?>
                 <li><a href="login" class="<?php active('login'); ?>">Login</a></li>
-            <?php }else{ ?>
+            <?php } else { ?>
                 <li><a href="logout">Logout</a></li>
             <?php } ?>
             <span class="px-3 text-light">Visiteurs : <?= $nb_visitors ?></span>

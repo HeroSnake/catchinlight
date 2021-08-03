@@ -3,38 +3,62 @@
     src: url('../fonts/CaviarDreams.ttf');
     font-display: swap;
 }
+
 * {
     font-family: "Caviar Dreams";
 }
+
 body {
     background-color: #283034;
     margin: 0;
 }
-.dropdown-divider{
+
+.dropdown-divider {
     margin: 0 50px;
-    display : none;
+    display: none;
 }
+
+a:hover {
+    color: white;
+}
+
 .fab {
     font-size: 40px;
 }
-.link:hover{
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.link:hover {
     color: white;
     text-decoration: none;
     opacity: 0.3;
 }
+
 li a:hover {
     color: white;
     text-decoration: none;
 }
-.active {
+
+.navbar .active {
     background-color: #3f4b52;
 }
+.nav-link:focus, .nav-link:hover{
+    color: white;
+}
+
 .content {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: auto;
-    width: 68%;
+    width: 1200px;
     min-height: 100vh;
 }
+
 .container {
     max-width: 100%;
     z-index: 7;
@@ -42,18 +66,22 @@ li a:hover {
     padding: 0;
     margin: 3px 0;
 }
+
 .icons {
     position: fixed;
-    left: 82.5vw;
+    left: 81vw;
     top: 40%;
 }
+
 a, p {
     color: white;
     text-decoration: none;
 }
+
 ol li {
     list-style-type: none;
 }
+
 ol li a, link {
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
@@ -63,19 +91,23 @@ ol li a, link {
     opacity: 1;
     font-size: 15px;
 }
+
 ol li:hover a {
     opacity: 0.3;
 }
-.thumbnail_vid{
+
+.thumbnail_vid {
     width: 100%;
 }
 
 /* NAVBAR */
+
 .fa-bars {
     color: white;
     font-size: 40px;
     margin: 10px;
 }
+
 .navbar {
     justify-content: left;
     z-index: 16;
@@ -87,9 +119,11 @@ ol li:hover a {
     background-color: #333;
     font-size: 120%;
 }
-.sticky{
+
+.sticky {
     position: sticky;
 }
+
 .navbar li a {
     display: block;
     color: white;
@@ -97,20 +131,26 @@ ol li:hover a {
     padding: 16px;
     text-decoration: none;
 }
+
 .navbar li a:hover {
     background-color: #111;
 }
+
 /* Dropdown Button */
+
 .dropbtn {
     background-color: #333333;
     color: #ffffff;
     border: none;
     cursor: pointer;
 }
-.pointer{
+
+.pointer {
     cursor: pointer;
 }
+
 /* Dropdown Content (Hidden by Default) */
+
 .dropdown-content {
     list-style-type: none;
     display: none;
@@ -121,22 +161,31 @@ ol li:hover a {
     padding: 0;
     width: 30%;
 }
+
 /* Links inside the dropdown */
+
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
+
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
 .show {
     display: block;
 }
+
 /* MENU PHOTOS */
+
 .conteneurMenu {
     text-align: center;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
 .menu {
     width: 100%;
     height: 400px;
@@ -145,9 +194,11 @@ ol li:hover a {
     overflow: hidden;
     text-align: center;
 }
+
 .menu img {
     height: 104%;
 }
+
 .textMenu {
     color: white;
     text-shadow: 0 0 4px black;
@@ -158,28 +209,84 @@ ol li:hover a {
     z-index: 1;
     text-align: center;
 }
+
+.profile-card-2 {
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    height: 400px;
+}
+
+.profile-card-2 img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    transform: scale(0.98);
+}
+
+.profile-card-2 .profile-name {
+    opacity: 0;
+    font-size: 30px;
+    color: #FFF;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-username {
+    position: absolute;
+    bottom: 50px;
+    left: 30px;
+    color: #FFF;
+    font-size: 13px;
+    transition: all linear 0.25s;
+}
+
+.profile-card-2:hover img {
+    filter: grayscale(100%) brightness(50%);
+    transform: scale(1);
+}
+
+.profile-card-2:hover .profile-name {
+    opacity: 1;
+}
+
+.profile-card-2:hover .profile-username {
+    bottom: 60px;
+}
+
 /* FOOTER */
+
 footer {
     background-color: #1313138a;
     color: white;
 }
+
 .iconsFooter {
     display: none;
 }
+
 /* PAGE ACCUEIL */
+
 .accueil {
     display: flex;
     flex-wrap: nowrap;
     margin: 50px;
 }
+
 .descriptionContainer {
     text-align: left;
     width: 60%;
     font-size: 1.1em;
 }
+
 .containpic {
     width: 30%;
 }
+
 .photoContainer {
     width: 220px;
     height: 220px;
@@ -188,21 +295,26 @@ footer {
     float: right;
     margin-right: 50px;
 }
+
 .picMax {
     width: auto;
     height: 100%;
     margin-left: -50px;
 }
+
 .signature {
     text-align: right;
 }
+
 /* PHOTOS MENU EFFECTS */
+
 .hovereffect {
     overflow: hidden;
     position: relative;
     text-align: center;
     cursor: default;
 }
+
 .hovereffect .overlay {
     width: 100%;
     height: 100%;
@@ -213,23 +325,28 @@ footer {
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
+
 .hovereffect:hover .overlay {
-    background-color: rgba(170,170,170,0.4);
+    background-color: rgba(170, 170, 170, 0.4);
 }
+
 .hovereffect h2, .hovereffect img {
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
+
 .hovereffect img {
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
+
 .hovereffect:hover img {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
 }
+
 .hovereffect .info {
     display: inline-block;
     text-decoration: none;
@@ -250,22 +367,27 @@ footer {
     top: 8%;
     left: 8%;
 }
+
 .hovereffect:hover .info {
     opacity: 1;
     filter: alpha(opacity=100);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
 /* MENU INDEX */
-.section_main{
+
+.section_main {
     height: 15vw;
 }
-.section_main img{
+
+.section_main img {
     height: 15vw;
     object-fit: cover;
 }
+
 .hovereffect1 {
     width: 100%;
     height: 100%;
@@ -273,9 +395,11 @@ footer {
     position: relative;
     text-align: center;
 }
+
 .hovereffect1 .textMenu {
     font-size: 200%;
 }
+
 .hovereffect1 .overlay {
     width: 100%;
     height: 100%;
@@ -285,39 +409,45 @@ footer {
     left: 0;
     opacity: 0;
     filter: alpha(opacity=0);
-    background-color: rgba(0,0,0,0.5);
-    -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
-    transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+    transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
 }
-.section_title{
+
+.section_title {
     font-size: 25px;
     margin-top: 17px;
 }
+
 .hovereffect1 img {
     display: block;
     position: relative;
     /* height: 100%; */
     width: 100%;
-    -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
-    transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+    -webkit-transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+    transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
 }
+
 .hovereffect1 h2 {
     position: relative;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     -webkit-transform: translatey(-100px);
     -ms-transform: translatey(-100px);
     transform: translatey(-100px);
-    -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
-    transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+    -webkit-transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+    transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
     padding: 10px;
 }
+
 .hovereffect1:hover .section_title {
     opacity: 0;
 }
+
 .hovereffect1:hover .overlay {
     opacity: 1;
     filter: alpha(opacity=100);
 }
+
 .hovereffect1:hover h2 {
     opacity: 1;
     filter: alpha(opacity=80);
@@ -325,7 +455,8 @@ footer {
     -webkit-transform: translatey(0);
     transform: translatey(0);
 }
-.centerImage{
+
+.centerImage {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -333,30 +464,41 @@ footer {
     -webkit-transform: translateY(-50%) translateX(-50%);
     transform: translateY(-50%) translateX(-50%);
 }
-a h2 :hover{
+
+a h2 :hover {
     text-decoration: none;
 }
+
 .panel {
     padding: 50px 7vw;
     /* display: none; */
 }
-h2{
+
+h2 {
     color: white;
 }
+
 .back-to-top {
     position: fixed;
     bottom: 25px;
     right: 25px;
     display: none;
 }
-.link :hover a{
+
+.link :hover a {
     text-decoration: none;
     color: white;
     opacity: 0.3;
 }
-.btnTop{
+
+.btnTop {
     z-index: 10;
 }
-#pageAwait { 
+
+#pageAwait, .page-footer {
     visibility: hidden;
+}
+
+.baguetteBox-button {
+    display: block;
 }
