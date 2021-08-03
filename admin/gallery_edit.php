@@ -75,8 +75,8 @@
             </div>
         </div>
     </div>
-    <div class="border rounded border-dark my-2 text-center">
-        <button name="<?=$gallery_id?>" id="updatePictures" type="button" class="btn btn-primary">Valider</button>
+    <div class="my-2 text-center">
+        <button name="<?=$gallery_id?>" id="updatePictures" type="button" class="btn btn-primary my-2">Valider l'ordre</button>
         <section id="photos" class="droppable grid">
             <?php
             foreach($images as $image){

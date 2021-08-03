@@ -1,6 +1,7 @@
 <?php
 require_once 'db_connection.php';
 $meta_description = "Gallerie d'images";
+$is_gallery = true;
 $sth_gallery = $bdd->prepare("SELECT * FROM galleries WHERE id = $id_gallery");
 $sth_gallery->execute();
 $gallery = $sth_gallery->fetch(\PDO::FETCH_ASSOC);

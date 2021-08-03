@@ -2,28 +2,20 @@
 $titre_page = "Photos";
 $meta_description = "Liste des galleries d'images";
 require_once "corePage.php";
-$sth = $bdd->prepare('SELECT * FROM galleries');
+$sth = $bdd->prepare('SELECT * FROM galleries WHERE visible = 1 AND sub_cat = 0');
 $sth->execute();
 ?>
-<div class="container conteneurMenu">
-    <div class="row m-0">
-        <?php while ($row = $sth->fetch(\PDO::FETCH_ASSOC)) {
-            if ($row['visible'] == 1) { ?>
-                <div class="col-md-4 col-sm-6 px-1 mx-auto">
-                    <div class="menu hovereffect">
-                        <img class="img-responsive" src="<?= $row['lien']; ?>" alt="<?= $row['nom_gallery']; ?>">
-                        <a class="overlay" href="<?= $row['nom_gallery']; ?>">
-                            <div class="align-items-center info">
-                                <h2 class="p-0 my-auto textMenu"><?= $row['titre']; ?></h2>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-        <?php }
-        }
-        ?>
+<div class="container">
+    <div class="row m-0 conteneurMenu">
+        <?php while ($row = $sth->fetch(\PDO::FETCH_ASSOC)) {?>
+            <a href="<?=$row['nom_gallery']?>" class="profile-card-2 col-sm-4">
+                <img src="<?=$row['lien']?>" class="img img-responsive" alt="<?=$row['nom_gallery']?>">
+                <div class="profile-name centerImage"><?=$row['titre']?></div>
+                <div class="profile-username"><?=$row['description']?></div>
+            </a>
+        <?php } ?>
     </div>
-</div> 
+</div>
 <?php
 require_once "endPage.php";
 ?>

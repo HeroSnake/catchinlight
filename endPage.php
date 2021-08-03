@@ -15,7 +15,7 @@
                             <h5 class="text-uppercase">Catchin'Light</h5>
                             <p>Site de photographie créé par Florent SYX</p>
                         </div>
-                        <hr class="clearfix w-100 d-md-none pb-3">
+                        <hr class="clearfix w-100 d-md-none mb-3">
                         <div class="col-md-6 mb-md-0 mb-3 px-5">
                             <h5 class="text-uppercase">Liens</h5>
                             <div class="row">
