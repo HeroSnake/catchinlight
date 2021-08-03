@@ -47,6 +47,10 @@ if (isset($pageName)) {
         $index = true;
     }
 }
+if (!isset($is_gallery)) {
+    $is_gallery = false;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -75,7 +79,6 @@ if (isset($pageName)) {
     <!-- <?php if (isset($css_gallery)) {
                 echo $css_gallery;
             } ?> -->
-
     <link rel="icon" href="icon/CL_icon.png">
     <link rel="stylesheet" href="css/main.css?1">
     <link rel="stylesheet" href="css/responsive.css?1">
@@ -112,10 +115,5 @@ if (isset($pageName)) {
             <img class="logo_loader" src="icon/CL_icon_pwa.png" alt="icon">
         </div>
         <div id="pageAwait">
-            <?php
-            if (!$is_gallery) {
-                require_once "carousel.php";
-            }
-            ?>
             <div class="tz-gallery">
                 <div class="row m-0">

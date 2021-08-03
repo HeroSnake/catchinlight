@@ -1,14 +1,14 @@
 <?php // pour la page maître
 $results = $bdd->prepare('SELECT * FROM galleries WHERE visible = 1 AND sub_cat = 1');
-$results->execute(array("%$query%"));
+$results->execute(array("%query%"));
 $galleries = [];
 $i = 0;
-foreach($results as $result){
+foreach ($results as $result) {
     $galleries[$i]['gallery'] = $result;
-    $images = $bdd->prepare('SELECT * FROM image WHERE gallery_id = '.$result['id'].' LIMIT 7');
-    $images->execute(array("%$query%"));
-    foreach($images as $image){
-        $galleries[$i]['images'][] = "img/".$result['nom_gallery']."/".$image['id'].'.'.$image['extension'];
+    $images = $bdd->prepare('SELECT * FROM image WHERE gallery_id = ' . $result['id'] . ' LIMIT 7');
+    $images->execute(array("%query%"));
+    foreach ($images as $image) {
+        $galleries[$i]['images'][] = "img/" . $result['nom_gallery'] . "/" . $image['id'] . '.' . $image['extension'];
     }
     $i++;
 }
@@ -16,6 +16,7 @@ $count = $results->rowCount();
 $i = 0;
 ?>
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <h1 style="color: white;position: absolute;z-index: 100;left: 50%;">Portraits</h1>
     <div class="carousel-inner">
         <?php foreach ($galleries as $gallery) { ?>
             <div class="carousel-item <?php if ($i == 0) echo "active"; ?>">
@@ -30,8 +31,8 @@ $i = 0;
                                     <h5 class="card-title"><?= $gallery['gallery']['titre'] ?></h5>
                                     <p class="card-text"><?= $gallery['gallery']['description'] ?></p>
                                     <div class="card-image-list animate__animated">
-                                        <?php foreach($gallery['images'] as $image){ ?>
-                                            <img src="<?=$image?>" alt="mini-carousel-image">
+                                        <?php foreach ($gallery['images'] as $image) { ?>
+                                            <img src="<?= $image ?>" alt="mini-carousel-image">
                                         <?php } ?>
                                     </div>
                                 </div>

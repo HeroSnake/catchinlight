@@ -25,14 +25,7 @@
                     <?php
                     } else if ($row['nom'] == "Services") { ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle <?= active($row['titre_lien']) ?> pointer" id="dropdownServices" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $row['nom'] ?></a>
-                            <div class="dropdown-menu bg-dark" aria-labelledby="dropdownServices">
-                                <?php
-                                while ($rowS = $query_services->fetch(\PDO::FETCH_ASSOC)) { ?>
-                                    <a href="<?= $row['titre_lien'] ?>#section<?= $rowS['section'] ?>"><?= $rowS['titre'] ?></a>
-                                <?php
-                                } ?>
-                            </div>
+                            <a href="<?= $row['titre_lien'] ?>" class="nav-link <?= active($row['titre_lien']) ?> pointer"><?= $row['nom'] ?></a>
                         </li>
                     <?php
                     } else { ?>

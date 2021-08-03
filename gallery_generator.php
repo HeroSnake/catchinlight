@@ -9,7 +9,6 @@ $titre_page = $gallery['Nom'];
 $gallery_name = $gallery['nom_gallery'];
 $colonne = floor(12 / $gallery['columns']);
 
-
 require_once 'corePage.php';
 $sth_image = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $id_gallery ORDER BY position");
 $sth_image->execute();
