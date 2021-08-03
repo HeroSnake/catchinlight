@@ -1,11 +1,11 @@
 <?php // pour la page maître
-$results = $bdd->prepare('SELECT * FROM galleries WHERE visible = 1 AND sub_cat = 1');
+$results = $bdd->prepare('SELECT * FROM galleries WHERE visible = 1 AND sub_cat = 1 ORDER BY id DESC');
 $results->execute(array("%query%"));
 $galleries = [];
 $i = 0;
 foreach ($results as $result) {
     $galleries[$i]['gallery'] = $result;
-    $images = $bdd->prepare('SELECT * FROM image WHERE gallery_id = ' . $result['id'] . ' LIMIT 7');
+    $images = $bdd->prepare('SELECT * FROM image WHERE gallery_id = ' . $result['id'] . ' LIMIT 3');
     $images->execute(array("%query%"));
     foreach ($images as $image) {
         $galleries[$i]['images'][] = "img/" . $result['nom_gallery'] . "/" . $image['id'] . '.' . $image['extension'];
