@@ -11,19 +11,7 @@
                 if ($row['visible'] == 1) { ?>
                     <li class="dropdown-divider"></li>
                     <?php
-                    if ($row['titre_lien'] == 'photos' && $meta_description == "Gallerie d'images") { ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="dropdownPhotos" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $row['nom'] ?></a>
-                            <div class="dropdown-menu bg-dark" aria-labelledby="dropdownPhotos">
-                                <?php
-                                while ($rowG = $query_galleries->fetch(\PDO::FETCH_ASSOC)) { ?>
-                                    <a href="<?= $rowG['nom_gallery'] ?>" class="<?= active($rowG['nom_gallery']) ?>"><?= $rowG['Nom'] ?></a>
-                                <?php
-                                } ?>
-                            </div>
-                        </li>
-                    <?php
-                    } else if ($row['nom'] == "Services") { ?>
+                    if ($row['nom'] == "Services") { ?>
                         <li class="nav-item dropdown">
                             <a href="<?= $row['titre_lien'] ?>" class="nav-link <?= active($row['titre_lien']) ?> pointer"><?= $row['nom'] ?></a>
                         </li>
