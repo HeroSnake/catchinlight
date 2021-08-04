@@ -76,8 +76,8 @@
     #carousel .title-portrait {
         color: white;
         position: relative;
-        left: 14%;
-        top: 4%;
+        left: 0;
+        top: 0;
         margin: 5px 15px;
     }
 }
