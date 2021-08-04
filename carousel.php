@@ -16,7 +16,7 @@ $count = $results->rowCount();
 $i = 0;
 ?>
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-    <h1 style="color: white;position: absolute;z-index: 100;left: 50%;">Portraits</h1>
+    <h1 class="title-portrait">Portraits</h1>
     <div class="carousel-inner">
         <?php foreach ($galleries as $gallery) { ?>
             <div class="carousel-item <?php if ($i == 0) echo "active"; ?>">
