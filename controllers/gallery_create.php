@@ -4,15 +4,19 @@ require_once "php_functions.php";
 
 if (isset($_POST['submit'])) {
     $Nom = $_POST["titre_page"]; //Titre écrit en brut
+    $colonnes = $_POST["colonnes"];
+    $desc = $_POST["description"];
     $Titre = mb_strtoupper($Nom); //Titre du menu
     $lien = strtolower(str_to_noaccent($Nom)); //Lien en minuscule
     $image = $_FILES["image"]["name"];
     $link = 'img/menu/';
-    $colonnes = $_POST["colonnes"];
-    $visible = "1";
+    $visible = $sub_cat = "1";
     $gallery_id;
 
     if (!isset($_POST["visible"])) {
+        $visible = "0";
+    }
+    if (!isset($_POST["subCat"])) {
         $visible = "0";
     }
 
@@ -23,10 +27,9 @@ if (isset($_POST['submit'])) {
     require "gallery_generator.php";
     ';
 
-    $query_create_page = "INSERT INTO galleries (Nom,nom_gallery,titre,lien,columns,visible) VALUES (?, ?, ?, ?, ?, ?)";
+    $query_create_page = "INSERT INTO galleries (Nom,nom_gallery,titre,lien,columns,visible,sub_cat,description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt= $bdd->prepare($query_create_page);
-    if($stmt->execute([$Nom, $lien, $Titre, $link.$image, $colonnes, $visible])){
-        mkdir("../img/" . $lien, 0755);
+    if($stmt->execute([$Nom, $lien, $Titre, $link.$image, $colonnes, $visible, $sub_cat, $desc])){
         $my_file = $lien . '.php';
         $handle = fopen('../' . $my_file, 'w') or die('Cannot open file:  ' . $my_file);
         $data = '<?php $id_gallery = ' . $bdd->lastInsertId() . ';' . $data;
@@ -37,6 +40,6 @@ if (isset($_POST['submit'])) {
         header("location: ../admin/gallery_edit?cat=" . $bdd->lastInsertId());
     }else{
         var_dump($query_create_page);
-        var_dump([$Nom, $lien, $Titre, 'img/menu/'.$image, $visible]);
+        var_dump([$Nom, $lien, $Titre, $link.$image, $colonnes, $visible, $sub_cat, $desc]);
     }
 }

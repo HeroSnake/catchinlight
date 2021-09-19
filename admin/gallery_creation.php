@@ -19,6 +19,13 @@ require_once "core_BO.php";
                     <input id="image_picker" type="file" name="image" accept="image/*" required></input>
                 </div>
                 <div class="form-group custom-control custom-checkbox">
+                    <input type="checkbox" id="subCat" name="subCat" class="custom-control-input" checked></input>
+                    <label class="custom-control-label" for="subCat">Sous-catégorie</label>
+                </div>
+                <div class="form-group">
+                    <textarea name="description" id="description" placeholder="Description de la gallerie" cols="30"></textarea>
+                </div>
+                <div class="form-group custom-control custom-checkbox">
                     <input type="checkbox" id="visible" name="visible" class="custom-control-input" checked></input>
                     <label class="custom-control-label" for="visible">Page visible</label>
                 </div>

@@ -1,6 +1,7 @@
 <?php
     require_once '../db_connection.php';
     require_once "../controllers/php_functions.php";
+    require_once "../controllers/block_builder.php";
     $titre_page = "Modifier une gallerie";
     $gallery_id = $_GET['cat'];
     $query_images = $bdd->prepare("SELECT * FROM galleries WHERE id = $gallery_id LIMIT 1");
@@ -13,8 +14,10 @@
     $image = $result['lien'];
     $visible = $result['visible'];
     $upload_loc_menu = 'img/menu/';
-    $upload_loc_gallery = '../img/' . $result['nom_gallery'] . '/';
+    $upload_loc_gallery = '../img/gallery/';
     $colonnes = $result['columns'];
+    $desc = $result['description'];
+    $sub_cat = $result['sub_cat'];
     $colonne = floor(12 / $colonnes);
 
     $sth = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $gallery_id ORDER BY position");
@@ -41,6 +44,13 @@
                     <label for="visible">Page visible :</label>
                     <input name="visible" type="checkbox" <?php if($visible == 1) { ?>checked<?php }?>></input>
                 </div>
+                <div class="form-group">
+                    <label for="subCat">Sous-catégorie</label>
+                    <input name="subCat" type="checkbox" <?php if($sub_cat == 1) { ?>checked<?php }?>></input>
+                </div>
+                <div class="form-group">
+                    <textarea name="description" id="description" placeholder="Description de la gallerie" cols="30"><?=$desc?></textarea>
+                </div>
                 <input class="btn" id="buttonSubmit" value="Valider" type="submit"></input>
             </form>
             <form class="border rounded border-dark my-2" action="../controllers/upload_update_gallery.php" method="post" enctype="multipart/form-data">
@@ -64,14 +74,7 @@
         </div>
         <div class="col-sm">
             <div class="col-md-8 col-sm-12 px-1 mx-auto my-5">
-                <div class="menu hovereffect">
-                    <img class="img-responsive" id="preview_img" src="../<?= $image ?>" alt="img">
-                    <a class="overlay" href="">
-                        <div class="align-items-center info">
-                            <h2  class="p-0 my-auto textMenu"><?= strtoupper($titre); ?></h2>
-                        </div>
-                    </a>
-                </div>
+                <?php buildMenuBlock("", "../$image", strtoupper($titre), $desc, true);?>
             </div>
         </div>
     </div>
@@ -80,7 +83,7 @@
         <section id="photos" class="droppable grid">
             <?php
             foreach($images as $image){
-                $link = "../img/$gallery_name/".$image["id"] . "." . $image["extension"];?>
+                $link = "../img/gallery/".$image["id"] . "." . $image["extension"];?>
                 <div class="col-sm-6 col-lg-<?=$colonne?> p-0 grid-item" id="<?=$image["id"]?>">
                     <div class="supp-icon" id="<?=$image["id"]?>">
                         <i class="fas fa-trash-alt text-danger"></i>

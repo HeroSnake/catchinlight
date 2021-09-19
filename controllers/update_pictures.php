@@ -22,7 +22,7 @@
             $sth_picture->execute();
             $picture = $sth_picture->fetch(\PDO::FETCH_ASSOC);
             $extension = $picture['extension'];
-            unlink("../img/$gallery_name/$deletedPicture.$extension");
+            unlink("../img/gallery/$deletedPicture.$extension");
         }
 
         //Supprimer les images de la BDD

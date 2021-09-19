@@ -12,11 +12,14 @@
     //Supprime image menu
     unlink('../' . $image);
 
-    //Vide le dossier
-    array_map( 'unlink', array_filter((array) glob("../img/". $page ."/*") ) );
-
-    //Supprime le dossier
-    rmdir('../img/' . $page);
+    $sth_picture = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $gallery_id");
+    $sth_picture->execute();
+    $pictures = $sth_picture->fetchAll(\PDO::FETCH_ASSOC);
+    foreach($pictures as $picture){
+        $extension = $picture['extension'];
+        $id = $picture['id'];
+        unlink("../img/gallery/$id.$extension");
+    }
 
     //Supprimer la page de la BDD
     $query_delete_page = $bdd->prepare("DELETE FROM galleries WHERE id = $gallery_id");

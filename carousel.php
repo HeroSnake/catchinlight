@@ -10,7 +10,7 @@ foreach ($results as $result) {
         $images = $bdd->prepare('SELECT * FROM image WHERE gallery_id = ' . $result['id'] . ' LIMIT 3');
         $images->execute(array("%query%"));
         foreach ($images as $image) {
-            $galleries[$i]['images'][] = "img/" . $result['nom_gallery'] . "/" . $image['id'] . '.' . $image['extension'];
+            $galleries[$i]['images'][] = "img/gallery/" . $image['id'] . '.' . $image['extension'];
         }
     }
     $i++;

@@ -18,7 +18,7 @@ $images = $sth_image->fetchAll(\PDO::FETCH_ASSOC);
     <div id="photos" class="row m-0 grid">
         <?php
         foreach($images as $image){
-            $link = "img/$gallery_name/".$image["id"] . "." . $image["extension"];
+            $link = "img/gallery/".$image["id"] . "." . $image["extension"];
             $liked = false;
             if(isset($_COOKIE[$image["id"]])){
                 $liked = true;
