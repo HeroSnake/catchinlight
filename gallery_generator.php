@@ -14,6 +14,7 @@ $sth_image = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $id_gallery O
 $sth_image->execute();
 $images = $sth_image->fetchAll(\PDO::FETCH_ASSOC);
 ?>
+<script src="js/masonry.js"></script>
 <div class="container">
     <div id="photos" class="row m-0 grid">
         <?php

@@ -13,7 +13,6 @@ window.addEventListener('load', function() {
         $(this).attr("src", $(this).attr("original"));
     });
 
-
     //////// DISABLE EVENTS ////////
     // this will disable dragging of all images
     $("img").mousedown(function(e) {
@@ -34,7 +33,6 @@ window.addEventListener('load', function() {
         if (event.button === 1) event.preventDefault();
     }));
 
-
     //////// SCROLL EFFECT ////////
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
@@ -50,7 +48,6 @@ window.addEventListener('load', function() {
         }, 400);
         return false;
     });
-
 
     //////// LIKE EFFECT ////////
     var likes = document.getElementsByClassName('change-icon');
@@ -84,40 +81,6 @@ window.addEventListener('load', function() {
             xhttp.send(JSON.stringify(data));
         });
     }
-
-
-    //////// MASONRY ////////
-    var elem = document.querySelector('.grid');
-    var msnry = new Masonry( elem, {
-    // options
-    itemSelector: '.grid-item',
-    columnWidth: 200
-    });
-    // element argument can be a selector string
-    //   for an individual element
-    var msnry = new Masonry( '.grid', {
-    // options
-    });
-    // if(this.screen.width > 1000){
-    //     var hiddenSlides = document.getElementsByClassName('animate__animated');
-    //     for (var i = 0; i < hiddenSlides.length; i++) {
-    //         hiddenSlides[i].classList.add("invisible");
-    //     }
-    //     var animates = document.getElementsByClassName('carousel-item');
-    //     for (var i = 0; i < animates.length; i++) {
-    //         animates[i].addEventListener('mouseenter', (e) => {
-    //             var child = (((((e.target.children[0]).children[0]).children[0]).children[1]).children[0]).children[2];
-    //             child.classList.add("animate__fadeInRight");
-    //             child.classList.remove("animate__fadeOutRight");
-    //             child.classList.remove("invisible");
-    //         })
-    //         animates[i].addEventListener('mouseleave', (e) => {
-    //             var child = (((((e.target.children[0]).children[0]).children[0]).children[1]).children[0]).children[2];
-    //             child.classList.remove("animate__fadeInRight");
-    //             child.classList.add("animate__fadeOutRight");
-    //         })
-    //     }
-    // }
 });
 
 async function registerSW(){

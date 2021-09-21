@@ -6,18 +6,6 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 require_once 'db_connection.php';
 
-
-function active($page)
-{
-    $page = preg_replace('/\s+/', '', $page);
-    $url = str_replace('%20', '', $_SERVER['REQUEST_URI']);
-    $url =  explode('/', $url);
-    $url = end($url);
-    if ($page == $url) {
-        return 'active'; //class name in css 
-    }
-}
-
 $cookie_name  = "visitor";
 $cookie_value = "yes";
 
@@ -53,6 +41,19 @@ if (!isset($is_gallery)) {
     $is_gallery = false;
 }
 
+function active($page, $is_gallery)
+{
+    $page = preg_replace('/\s+/', '', $page);
+    $url = str_replace('%20', '', $_SERVER['REQUEST_URI']);
+    $url =  explode('/', $url);
+    $url = end($url);
+    if ($page == $url) {
+        return 'active';
+    } else if($page == "photos" && $is_gallery){
+        return 'active';
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -72,8 +73,9 @@ if (!isset($is_gallery)) {
     <!-- PRELOADING -->
     <link rel=preload src="fonts/CaviarDreams.ttf" as="font" type="font/ttf" crossorigin="anonymous">
     <!-- BOOSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 

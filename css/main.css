@@ -287,21 +287,6 @@ footer {
     width: 30%;
 }
 
-.photoContainer {
-    width: 220px;
-    height: 220px;
-    overflow: hidden;
-    border-radius: 50%;
-    float: right;
-    margin-right: 50px;
-}
-
-.picMax {
-    width: auto;
-    height: 100%;
-    margin-left: -50px;
-}
-
 .signature {
     text-align: right;
 }
