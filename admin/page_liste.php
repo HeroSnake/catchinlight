@@ -2,7 +2,6 @@
 $titre_page = "Liste des pages";
 $origin = "page";
 require_once "core_BO.php";
-require_once "../controllers/php_functions.php";
 $query_images = $bdd->prepare("SELECT * FROM pages");
 $query_images->execute();
 ?>

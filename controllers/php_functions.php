@@ -20,3 +20,9 @@ function str_to_noaccent($str)
 
     return ($url);
 }
+
+function d($element)
+{
+    var_dump($element);
+    die();
+}

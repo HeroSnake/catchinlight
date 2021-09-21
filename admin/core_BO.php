@@ -7,6 +7,7 @@ header("Pragma: no-cache");
 ob_start();
 require_once '../db_connection.php';
 require_once '../controllers/session.php';
+require_once "../controllers/php_functions.php";
 function active($current_page)
 {
     $url_array =  explode('/', $_SERVER['REQUEST_URI']);

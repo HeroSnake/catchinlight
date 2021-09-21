@@ -1,29 +1,39 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     registerSW();
     setTimeout(removeLoader); //wait for page load PLUS two seconds.
+    let imgs = document.getElementsByClassName('square-img')
+    if(imgs.length > 0){
+        let width = imgs[0].clientWidth+'px'
+        for (let img of imgs) {
+            img.style.height = width
+            img.style.width = width
+        }
+    }
+
+
     //Display video thumbnail
     $videos = $('div .modal fade');
-    $('.fade').each(function(){
+    $('.fade').each(function () {
         $(this).on('hidden.bs.modal', function (e) {
             // do something...
             $(this, 'iframe').attr("src", $(this, 'iframe').attr('src'));
         });
     });
-    $('img').each(function() {
+    $('img').each(function () {
         $(this).attr("src", $(this).attr("original"));
     });
 
     //////// DISABLE EVENTS ////////
     // this will disable dragging of all images
-    $("img").mousedown(function(e) {
+    $("img").mousedown(function (e) {
         e.preventDefault()
     });
     // this will disable right-click on all images
-    $("img").on("contextmenu", function(e) {
+    $("img").on("contextmenu", function (e) {
         return false;
     });
     //Prevent open in new tab image gallery
-    $('.lightbox').click(function (e){  //USING CRTL + CLICK
+    $('.lightbox').click(function (e) {  //USING CRTL + CLICK
         if (e.ctrlKey) {
             return false;
         }
@@ -52,7 +62,7 @@ window.addEventListener('load', function() {
     //////// LIKE EFFECT ////////
     var likes = document.getElementsByClassName('change-icon');
     for (var i = 0; i < likes.length; i++) {
-        likes[i].addEventListener("click", function toggleLike(element){
+        likes[i].addEventListener("click", function toggleLike(element) {
             var element = element.target.parentNode;
             var gallery_id = element.name;
             var image_id = element.id;
@@ -61,40 +71,40 @@ window.addEventListener('load', function() {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "controllers/like.php", true);
             xhttp.setRequestHeader("Content-Type", "application/json");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var response = this.responseText;
                 }
             };
-            if(element.children[0].style.display != "none"){    //+1 LIKE
+            if (element.children[0].style.display != "none") {    //+1 LIKE
                 element.children[0].style.display = "none";
                 element.children[1].style.display = "inherit";
                 liked = true;
                 element.nextElementSibling.innerHTML = parseInt(element.nextElementSibling.innerHTML) + 1;
-            }else{                                              //-1 LIKE
+            } else {                                              //-1 LIKE
                 element.children[0].style.display = "inherit";
                 element.children[1].style.display = "none";
                 liked = false;
                 element.nextElementSibling.innerHTML = parseInt(element.nextElementSibling.innerHTML) - 1;
             }
-            var data = {like:liked,gallery_id:gallery_id,image_id:image_id};
+            var data = { like: liked, gallery_id: gallery_id, image_id: image_id };
             xhttp.send(JSON.stringify(data));
         });
     }
 });
 
-async function registerSW(){
-    if('serviceWorker' in navigator){
-        try{
+async function registerSW() {
+    if ('serviceWorker' in navigator) {
+        try {
             await navigator.serviceWorker.register('./sw.js');
-        } catch (e){
+        } catch (e) {
             console.log('SW registration failed');
         }
     }
 }
 
 // Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
@@ -106,11 +116,12 @@ window.onclick = function(event) {
         }
     }
 }
-function removeLoader(){
-    $( "#loadingDiv" ).fadeOut(500, function() {
+
+function removeLoader() {
+    $("#loadingDiv").fadeOut(500, function () {
         // fadeOut complete. Remove the loading div
-        $( "#loadingDiv" ).remove(); //makes page more lightweight 
-        $( "#pageAwait" ).css('visibility', 'visible');
-        $( ".page-footer" ).css('visibility', 'visible');
-    });  
+        $("#loadingDiv").remove(); //makes page more lightweight 
+        $("#pageAwait").css('visibility', 'visible');
+        $(".page-footer").css('visibility', 'visible');
+    });
 }

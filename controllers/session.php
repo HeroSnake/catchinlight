@@ -1,6 +1,5 @@
 <?php
     $login_session = NULL;
-    require_once '../db_connection.php';
     session_start();
     $logged = false;
 

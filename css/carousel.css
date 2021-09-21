@@ -2,82 +2,21 @@
 
 #carousel {
     background-color: #0000003b;
-    height: 320px;
-}
-
-#carousel .carousel_img {
-    height: 300px;
-    width: 300px;
-    object-fit: cover;
-    display: block;
-    margin: auto;
-}
-
-#carousel .carousel-caption {
-    right: 0;
-    left: 66%;
-    text-align: left;
-}
-
-#carousel .card-image-list {
-    display: flex;
-}
-
-#carousel .card-image-list img {
-    height: 100px;
-}
-
-#carousel .card {
-    background-color: transparent;
-    border: none;
-    padding: 10px;
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-}
-
-#carousel .card:hover {
-    background-color: rgba(0, 0, 0, 0.247);
-}
-
-#carousel .card-title {
-    color: white;
-    margin: .5rem;
-}
-
-#carousel .title-portrait {
-    color: white;
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-}
-
-#carousel .card-body {
-    overflow: hidden;
-}
-
-#carousel .card-text {
-    font-size: 14px;
-}
-
-#carousel .no-gutters {
-    display: flex;
-    align-items: center;
+    height: 100%;
 }
 
 .carousel-control-next, .carousel-control-prev {
     width: 4%;
 }
 
+#carousel .multi-items-carousel {
+    display: flex;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 600px) {
     #carousel {
         height: auto;
         font-size: 80%;
-    }
-    #carousel .title-portrait {
-        color: white;
-        position: relative;
-        left: 0;
-        top: 0;
-        margin: 5px 15px;
     }
 }

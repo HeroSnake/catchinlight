@@ -103,7 +103,7 @@ require_once "corePage.php";
                     <p>Bon visionnage,</p>
                     <p class="signature">Catchin' Light</p>
                 </div>
-                <a href="contact" class="btn btn-outline-primary">Contact</a>
+                <a href="contact" class="btn btn-primary">Contact</a>
             </div>
         </div>
     </div>

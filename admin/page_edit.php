@@ -1,7 +1,6 @@
 <?php
 $titre_page = "Modifier une page";
 require_once "core_BO.php";
-require_once "../controllers/php_functions.php";
 $page_id = $_GET['cat'];
 $upload_loc_accueil = 'img/accueil/containers/';
 $query_images = $bdd->prepare("SELECT * FROM pages WHERE id = $page_id");
