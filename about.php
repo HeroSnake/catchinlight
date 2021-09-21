@@ -23,9 +23,7 @@ require_once "corePage.php";
     }
 
     .picMax {
-        width: auto;
         height: 100%;
-        margin-left: -50px;
     }
 
     .hori-timeline .events .event-list {
