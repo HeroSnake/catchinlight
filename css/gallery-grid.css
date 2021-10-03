@@ -1,23 +1,15 @@
-.tz-gallery .lightbox img {
+.lightbox img {
     width: 100%;
     transition: 0.2s ease-in-out;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-.tz-gallery .lightbox img:hover {
+.lightbox img:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-.tz-gallery img {
-    border-radius: 4px;
-}
-
-.baguetteBox-button {
-    background-color: transparent !important;
-}
-
-.overflow-hidden{
+.overflow-hidden {
     padding: 2px;
     margin: 0;
 }

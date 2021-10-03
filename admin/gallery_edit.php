@@ -1,5 +1,5 @@
 <?php
-    require_once '../db_connection.php';
+    require_once '../controllers/db_connection.php';
     require_once "../controllers/php_functions.php";
     require_once "../controllers/block_builder.php";
     $titre_page = "Modifier une gallerie";

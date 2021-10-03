@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#333333" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords"
+        content="photographie, photographe, prestations services, paysage, photomontage, montage, vidéo, shooting, photo, gallerie" />
+    <meta name="rights" content="© Maxime Brisson - Tous droits réservés" />
+    <meta name="description" content="Catchin'Light - <?= $meta_description ?>" />
+    <meta name="author" content="Florent SYX, Maxime Brisson" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- PRELOADING -->
+    <link rel=preload src="fonts/CaviarDreams.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <!-- BOOSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+
+    <link rel="stylesheet" href="css/gallery-grid.css">
+    <link rel="icon" href="icon/CL_icon.png">
+    <link rel="stylesheet" href="css/main.css?1">
+    <link rel="stylesheet" href="css/responsive.css?1">
+    <link rel="stylesheet" href="css/cookiealert.css?1">
+    <link rel="stylesheet" href="css/pulse.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/no_drag_select.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icon/CL_icon.png">
+
+    <script src="js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue-recaptcha@latest/dist/vue-recaptcha.min.js"></script>
+    <script src="js/vue-masonry.js"></script>
+
+    <title>Catchin'Light</title>
+</head>
+
+<body oncontextmenu="return false" @click="closeDropDown">
+    <div class="icons">
+        <ol>
+            <li><a href="https://www.instagram.com/maxime.brsn/" target="_blank" rel="noreferrer"><i
+                        class="fab fa-instagram"></i> @maxime.brsn</a></li>
+            <li><a href="https://www.facebook.com/maxime.brisson.74/" target="_blank" rel="noreferrer"><i
+                        class="fab fa-facebook-square"></i> Maxime Brisson</a></li>
+            <li><a href="https://www.youtube.com/channel/UCzYqRxe2fuowyvjZJyIyF5g/" target="_blank" rel="noreferrer"><i
+                        class="fab fa-youtube-square"></i> Catchin' Light</a></li>
+        </ol>
+    </div>
+    <div id="content-page" class="content">
+        <nav class="navbar navbar-expand-lg sticky">
+            <div class="btn navbar-toggler" role="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars h2"></i>
+                <p class="ml-2 d-inline h2">Catchin'Light</p>
+            </div>
+            <div class="collapse text-white navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <div @click="changePage('index')" :class="pageName=='index' ? 'active' : ''">Home</div>
+                    </li>
+                    <div v-for="page in pages">
+                        <li class="dropdown-divider"></li>
+                        <li class="nav-item dropdown">
+                            <div @click="changePage(page.titre_lien)"
+                                :class="(pageName==page.titre_lien) || (pageName=='gallery' && page.titre_lien=='photos') ? 'active' : ''">
+                                {{page.nom}}</div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+        <!-- CONTENU PAGE -->
+        <div v-if="loading" class="lds-dual-ring"></div>
+        <!-- COMPONENTS -->
+        <pages v-if="pageName=='index'" :loading="loading " :pages="pages"></pages>
+
+        <galleries v-if="pageName=='photos'" :loading="loading " :galleries="galleries"></galleries>
+
+        <gallery v-if="pageName=='gallery'" :loading="loading " :pages="pages" :loading="loading"
+            :id_gallery="id_gallery" :gallery="gallery" :images="images" :cols="cols"></gallery>
+
+        <videos v-if="pageName=='videos'" :loading="loading " :videos="videos"></videos>
+
+        <about v-if="pageName=='about'" :loading="loading " :services="services"></about>
+
+        <contact v-if="pageName=='contact'" :loading="loading" :success="success" :form="form"></contact>
+        <div v-if="pageName=='mentions-legales'">
+            <div class="container text-left mx-auto col-9 my-4">
+                <h2>Informations légales</h2>
+                <p>Merci de lire attentivement les présentes modalités d'utilisation du présent site avant de le
+                    parcourir. En vous connectant sur ce site, vous acceptez sans réserve les présentes modalités.
+                </p>
+                <p><small>(Sur cette page, Catchin'Light est représenté par l'éditeur et <a class="link"
+                            @click="changePage('about')"><b>Maxime
+                                Brisson</b></a>)</small></p>
+                <div id="section1">
+                    <h2>Editeur du site</h2>
+                    <p>
+                        <a class="link" @click="changePage('index')">Catchin'Light</a><br>
+                        par Florent SYX<br>
+                        <a class="link" @click="changePage('index')">https://catchin-light.com/</a>
+                    </p>
+                </div>
+                <div id="section2">
+                    <h2>Conditions d'utilisation</h2>
+                    <p>
+                        Le site accessible par les url suivants : www.catchin-light.com est exploité dans le respect
+                        de
+                        la législation française. L'utilisation de ce site est régie par les présentes conditions
+                        générales. En utilisant le site, vous reconnaissez avoir pris connaissance de ces conditions
+                        et
+                        les avoir acceptées. Celles-ci pourront êtres modifiées à tout moment et sans préavis par
+                        l'éditeur.<br>
+                        L'éditeur ne saurait être tenu pour responsable en aucune manière d’une mauvaise utilisation
+                        du
+                        service.
+                    </p>
+                </div>
+                <div id="section3">
+                    <h2>Limitation de responsabilité</h2>
+                    <p>
+                        Tout contenu téléchargé se fait aux risques et périls de l'utilisateur et sous sa seule
+                        responsabilité. En conséquence, L'éditeur ne saurait être tenu responsable d'un quelconque
+                        dommage subi par l'ordinateur de l'utilisateur ou d'une quelconque perte de données
+                        consécutives
+                        au téléchargement.
+                    </p>
+                    <p>
+                        Les liens hypertextes mis en place dans le cadre du présent site internet en direction
+                        d'autres
+                        ressources présentes sur le réseau Internet ne sauraient engager la responsabilité de
+                        l'éditeur.
+                    </p>
+                </div>
+                <div id="section4">
+                    <h2>Litiges</h2>
+                    <p>
+                        Les présentes conditions sont régies par les lois françaises et toute contestation ou
+                        litiges
+                        qui pourraient naître de l'interprétation ou de l'exécution de celles-ci seront de la
+                        compétence
+                        exclusive des tribunaux dont dépend le siège social de la société Natural net. La langue de
+                        référence, pour le règlement de contentieux éventuels, est le français.
+                    </p>
+                </div>
+                <div id="section5">
+                    <h2>Droit d'accès</h2>
+                    <p>
+                        En application de cette loi, les internautes disposent d’un droit d’accès, de rectification,
+                        de
+                        modification et de suppression concernant les données qui les concernent personnellement. Ce
+                        droit peut être exercé par voie postale auprès de Florent SYX 1, rue Eugène Verdun 74000
+                        Annecy
+                        ou par voie électronique à l’adresse email suivante : florent.syx@gmail.com.<br>
+                        Les informations personnelles collectées ne sont en aucun cas confiées à des tiers.
+                    </p>
+                </div>
+                <div id="section6">
+                    <h2>Confidentialité</h2>
+                    <p>
+                        Vos données personnelles sont confidentielles et ne seront en aucun cas communiquées à des
+                        tiers.
+                    </p>
+                </div>
+                <div id="section7">
+                    <h2>Propriété intellectuelle</h2>
+                    <p>
+                        Tout le contenu du présent site, incluant, de façon non limitative, les graphismes, images,
+                        textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la
+                        propriété exclusive de <a class="link" @click="changePage('index')"><b>Catchin'Light</b></a> à
+                        l'exception des marques,
+                        logos
+                        ou contenus appartenant à d'autres sociétés partenaires ou auteurs.<br>
+                        Toute reproduction, distribution, modification, adaptation, retransmission ou publication,
+                        même
+                        partielle, de ces différents éléments est strictement interdite sans l'accord exprès par
+                        écrit
+                        Catchin'Light. Cette représentation ou reproduction, par quelque procédé que ce soit,
+                        constitue
+                        une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété
+                        intellectuelle. Le non-respect de cette interdiction constitue une contrefaçon pouvant
+                        engager
+                        la responsabilité civile et pénale du contrefacteur. En outre, les propriétaires des
+                        Contenus
+                        copiés pourraient intenter une action en justice à votre encontre.
+                    </p>
+                    <p>
+                        Catchin'Light est identiquement propriétaire des "droits des producteurs de bases de
+                        données"
+                        visés au Livre III, Titre IV, du Code de la Propriété Intellectuelle (loi n° 98-536 du 1er
+                        juillet 1998) relative aux droits d'auteur et aux bases de données.
+                    </p>
+                    <p>
+                        Les utilisateurs et visiteurs du site internet peuvent mettre en place un hyperlien en
+                        direction
+                        de ce site.
+                    </p>
+                    <p>
+                        Pour toute demande d'autorisation ou d'information, veuillez nous contacter par email :
+                        catchin.light@gmail.com ou depuis la <a class="link" @click="changePage('contact')"><b>page de
+                                contact</b></a>.
+                    </p>
+                </div>
+                <div id="section8">
+                    <h2>Hébergeur</h2>
+                    <p>
+                        <b>Hostinger</b><br>
+                        Hébergement web pour développer un site parfait ! Hébergement mutualisé, domaines et VPS<br>
+                        <a class="link" href="https://www.hostinger.fr/"
+                            target="_blank">https://www.hostinger.fr/</a><br>
+
+                    </p>
+                </div>
+                <div id="section9">
+                    <h2>Conditions de service</h2>
+                    <p>
+                        Ce site est proposé en langages HTML5, CSS3, Javascript et Jquery, pour un meilleur confort
+                        d'utilisation et un graphisme plus agréable, nous vous recommandons de recourir à des
+                        navigateurs modernes comme Safari, Firefox, Chrome,...
+                    </p>
+                </div>
+                <div id="section10">
+                    <h2>Cookies</h2>
+                    <p>
+                        Pour des besoins de statistiques et d'affichage, le présent site utilise des cookies. Il
+                        s'agit
+                        de petits fichiers textes stockés sur votre disque dur afin d'enregistrer des données
+                        techniques
+                        sur votre navigation. Certaines parties de ce site ne peuvent être fonctionnelle sans
+                        l’acceptation de cookies.
+                    </p>
+                </div>
+                <div id="section11">
+                    <h2>Liens hypertextes</h2>
+                    <p>
+                        Le site Catchin'Light peut offrir des liens vers d’autres sites internet ou d’autres
+                        ressources
+                        disponibles sur Internet.
+                    </p>
+                    <p>
+                        Catchin'Light net ne dispose d'aucun moyen pour contrôler les sites en connexion avec
+                        lui-même.
+                        Il ne répond pas de la disponibilité de tels sites et sources externes, ni ne la garantit.
+                        Catchin'Light ne peut être tenu pour responsable de tout dommage, de quelque nature que ce
+                        soit,
+                        résultant du contenu de ces sites ou sources externes, et notamment des informations,
+                        produits
+                        ou services qu’ils proposent, ou de tout usage qui peut être fait de ces éléments. Les
+                        risques
+                        liés à cette utilisation incombent pleinement à l'internaute, qui doit se conformer à leurs
+                        conditions d'utilisation.
+                    </p>
+                </div>
+                <div id="section12">
+                    <h2>Contactez-nous</h2>
+                    <p>
+                        Catchin'Light est à votre disposition pour tous vos commentaires ou suggestions. Vous pouvez
+                        nous écrire en français par courrier électronique à : catchin.light@gmail.com ou depuis la
+                        <a class="link" @click="changePage('contact')"><b>page de contact</b></a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU PAGE -->
+        <!-- Footer -->
+        <footer class="page-footer font-small blue pt-4 px-5">
+            <div class="footer-copyright text-center py-3 iconsFooter">
+                <a href="https://www.instagram.com/maxime.brsn/" target="_blank" rel="noreferrer"><i
+                        class="fab fa-instagram-square"></i></a>
+                <a href="https://www.facebook.com/maxime.brisson.74/" target="_blank" rel="noreferrer"><i
+                        class="fab fa-facebook-square"></i></a>
+                <a href="https://www.youtube.com/user/MrDrome74/" target="_blank" rel="noreferrer"><i
+                        class="fab fa-youtube-square"></i></a>
+            </div>
+            <div class="container-fluid text-center text-md-left">
+                <div class="row">
+                    <div class="col-md-6 mt-md-0 mt-3 px-5">
+                        <h5 class="text-uppercase">Catchin'Light</h5>
+                        <p>Site de photographie créé par Florent SYX</p>
+                    </div>
+                    <hr class="clearfix d-md-none mb-3">
+                    <div class="col-md-6 mb-md-0 mb-3 px-5">
+                        <h5 class="text-uppercase">Liens</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a class="link" @click="changePage('about')">À propos</a>
+                                    </li>
+                                    <li>
+                                        <a class="link" @click="changePage('contact')">Contactez-nous</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a class="link" @click="changePage('mentions-legales')">Mentions légales</a>
+                                    </li>
+                                    <li>
+                                        <a class="link" href="https://cookiesandyou.com/" target="_blank"
+                                            rel="noreferrer">C'est quoi un cookie ?</a>
+                                    </li>
+                                    <li>
+                                        <a class="link" href="sitemap.xml">Plan du site</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright text-center py-3">© 2021 Copyright:
+                    <a class="link" href="https://catchin-light.com/"> catchin-light.com</a>
+                </div>
+        </footer>
+        <!-- Footer -->
+        <div id="back-to-top" class="btnTop btn btn-light btn-lg back-to-top" @click="scrollTop"><i class="fas fa-chevron-up"></i></div>
+        <!-- START Bootstrap-Cookie-Alert -->
+        <div class="alert text-center cookiealert" role="alert">
+            <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website.
+            <a href="https://cookiesandyou.com/" target="_blank" rel="noreferrer">Learn more</a>
+            <button type="button" class="btn btn-primary btn-sm acceptcookies">
+                I agree
+            </button>
+        </div>
+    </div>
+    <!-- require_once cookiealert script -->
+    <script src="js/cookiealert.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

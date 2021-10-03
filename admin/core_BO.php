@@ -5,7 +5,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 ob_start();
-require_once '../db_connection.php';
+require_once '../controllers/db_connection.php';
 require_once '../controllers/session.php';
 require_once "../controllers/php_functions.php";
 function active($current_page)
@@ -49,7 +49,7 @@ $nb_visitors = $result['visits'];
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/gallery-grid.css">
 
-    <script src="../js/aa5b198ca0.js" crossorigin="anonymous"></script>
+    <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
     <script src="../js/update_gallery.js" crossorigin="anonymous"></script>
 
     <title>CatchinLight BO : <?= $titre_page ?></title>
@@ -58,13 +58,13 @@ $nb_visitors = $result['visits'];
 <body>
     <div class="content">
         <ul class="navbar navbar-expand-lg">
-            <li><a href="../" class="<?php active('index'); ?>">Home</a></li>
-            <li><a href="gallery_liste" class="<?php active('gallery_creation'); ?> <?php active('gallery_liste'); ?>">Galleries</a></li>
-            <li><a href="page_liste" class="<?= active('page_creation'); ?> <?= active('page_liste'); ?>">Pages</a></li>
+            <li><div class="<?php active('index'); ?>"><a href="../">Home</a></div></li>
+            <li><div class="<?php active('gallery_creation'); ?> <?php active('gallery_liste'); ?>"><a href="gallery_liste">Galleries</a></div></li>
+            <li><div class="<?= active('page_creation'); ?> <?= active('page_liste'); ?>"><a href="page_liste">Pages</a></div></li>
             <?php if ($logged === false) { ?>
-                <li><a href="login" class="<?php active('login'); ?>">Login</a></li>
+                <li><div class="<?php active('login'); ?>"><a href="login">Login</a></div></li>
             <?php } else { ?>
-                <li><a href="logout">Logout</a></li>
+                <li><div><a href="logout">Logout</a></div></li>
             <?php } ?>
             <span class="px-3 text-light">Visiteurs : <?= $nb_visitors ?></span>
         </ul>

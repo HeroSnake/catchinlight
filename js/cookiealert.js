@@ -27,7 +27,7 @@
         cookieAlert.classList.remove("show");
 
         // dispatch the accept event
-        // window.dispatchEvent(new Event("cookieAlertAccept"))
+        window.dispatchEvent(new Event("cookieAlertAccept"))
     });
 
     // Cookie functions from w3schools

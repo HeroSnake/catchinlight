@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/db_connection.php';
+require_once 'db_connection.php';
 $data = json_decode(file_get_contents("php://input"));
 $like = $data->like;
 $image_id = $data->image_id;

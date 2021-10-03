@@ -1,5 +1,5 @@
 <?php
-require_once '../db_connection.php';
+require_once 'db_connection.php';
 $data = json_decode(file_get_contents("php://input"));
 $page_id = $data->id;
 $page = $data->page;

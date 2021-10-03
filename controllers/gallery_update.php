@@ -1,5 +1,5 @@
 <?php
-require_once '../db_connection.php';
+require_once 'db_connection.php';
 require_once "php_functions.php";
 if (isset($_POST["titre_page"]) || isset($_POST["image"]) || isset($_POST["colonnes"])) {
     $gallery_id = $_POST['gallery_id'];
