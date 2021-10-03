@@ -23,7 +23,7 @@ $query_images->execute();
             while ($row = $query_images->fetch(\PDO::FETCH_ASSOC)) {
                 echo
                 '<tr>
-                    <td><a href="../' . $row['titre_lien'] . '" class="btn btn-default text-white fas fa-link"></a></td>
+                    <td><a href="../#' . $row['titre_lien'] . '" class="btn btn-default text-white fas fa-link"></a></td>
                     <td>' . $row['id'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . strtoupper($row['nom']) . '</td>
@@ -35,12 +35,12 @@ $query_images->execute();
                     }
                     echo '<td class="text-center">
                         <a href="page_edit?cat=' . $row['id'] . '" class="btn btn-default text-white fas fa-edit"></a>
-                        <a class="btn btn-default hover-overlay fas fa-trash-alt text-danger btn-confirm" id="'.$row['id'].'" name="'.$row['titre_lien'].'"></a>
+                        <!-- <a class="btn btn-default hover-overlay fas fa-trash-alt text-danger btn-confirm" id="'.$row['id'].'" name="'.$row['titre_lien'].'"></a>-->
                     </td>
                 <tr>';
             }
         ?>
     </tbody>
 </table>
-<a href="page_creation" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une Page</a>
+<!-- <a href="page_creation" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une Page</a> -->
 <?php require_once 'confirmation_modal.php';

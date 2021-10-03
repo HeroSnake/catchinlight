@@ -75,9 +75,11 @@
                 displayGutter: 0
             }
         },
+        created() {
+            this.reCalculate()
+        },
         mounted: function mounted() {
             var this$1 = this
-
             // Bind resize handler to page
             if (window) {
                 window.addEventListener('resize', this.reCalculate)
@@ -85,7 +87,6 @@
         },
         updated: function updated() {
             var this$1 = this
-
             this.$nextTick(function () {
                 this$1.reCalculate()
             })
@@ -98,7 +99,7 @@
         methods: {
             // Recalculate how many columns to display based on window width
             // and the value of the passed `:cols=` prop
-            reCalculate: function reCalculate() {
+            reCalculate() {
                 var previousWindowWidth = this.windowWidth
                 let width = window.innerWidth < window.screen.width ? window.innerWidth : window.screen.width
                 this.windowWidth = (window ? width : null) || Infinity
@@ -111,15 +112,15 @@
                 this._reCalculateColumnCount(this.windowWidth)
                 this._reCalculateGutterSize(this.windowWidth)
             },
-            _reCalculateGutterSize: function _reCalculateGutterSize(windowWidth) {
+            _reCalculateGutterSize(windowWidth) {
                 this.displayGutter = breakpointValue(this.gutter, windowWidth)
             },
-            _reCalculateColumnCount: function _reCalculateColumnCount(windowWidth) {
+            _reCalculateColumnCount(windowWidth) {
                 var newColumns = breakpointValue(this.cols, windowWidth)
                 newColumns = Math.max(1, Number(newColumns) || 0)
                 this.displayColumns = newColumns
             },
-            _getChildItemsInColumnsArray: function _getChildItemsInColumnsArray() {
+            _getChildItemsInColumnsArray() {
                 var this$1 = this
                 var columns = []
                 var childItems = this.$slots.default || []
@@ -137,7 +138,6 @@
                     if (!columns[columnIndex]) {
                         columns[columnIndex] = []
                     }
-
                     columns[columnIndex].push(childItems[i])
                 }
                 return columns

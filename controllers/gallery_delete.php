@@ -1,5 +1,5 @@
 <?php
-    require_once '../db_connection.php';
+    require_once '../controllers/db_connection.php';
     $data = json_decode(file_get_contents("php://input"));
     $gallery_id = $data->id;
     $page = $data->page;
@@ -7,8 +7,6 @@
     $query_galleries->execute();
     $image = $query_galleries->fetch(\PDO::FETCH_ASSOC)['lien'];
 
-    //Supprime la page PHP
-    unlink('../' . $page . '.php');
     //Supprime image menu
     unlink('../' . $image);
 

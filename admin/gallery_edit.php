@@ -1,16 +1,14 @@
 <?php
     require_once '../controllers/db_connection.php';
     require_once "../controllers/php_functions.php";
-    require_once "../controllers/block_builder.php";
     $titre_page = "Modifier une gallerie";
     $gallery_id = $_GET['cat'];
     $query_images = $bdd->prepare("SELECT * FROM galleries WHERE id = $gallery_id LIMIT 1");
     $query_images->execute();
 
     $result = $query_images->fetch(\PDO::FETCH_ASSOC);
-    $gallery_name = $result['nom_gallery'];
     $titre = $result['Nom'];
-    $url = strtolower(str_to_noaccent($result['titre']));
+    $url = '#gallery&id'.strtolower(str_to_noaccent($result['id']));
     $image = $result['lien'];
     $visible = $result['visible'];
     $upload_loc_menu = 'img/menu/';
@@ -74,7 +72,11 @@
         </div>
         <div class="col-sm">
             <div class="col-md-8 col-sm-12 px-1 mx-auto my-5">
-                <?php buildMenuBlock("", "../$image", strtoupper($titre), $desc, true);?>
+                <a class="profile-card-2">
+                    <img src="../<?=$image?>" class="img img-responsive square-img">
+                    <div class="profile-name centerImage"><?=strtoupper($titre)?></div>
+                    <div class="profile-username"><?=$desc?></div>
+                </a>
             </div>
         </div>
     </div>

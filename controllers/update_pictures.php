@@ -14,7 +14,6 @@
         $sth_gallery = $bdd->prepare("SELECT * FROM galleries WHERE id = $gallery_id");
         $sth_gallery->execute();
         $gallery = $sth_gallery->fetch(\PDO::FETCH_ASSOC);
-        $gallery_name = $gallery['nom_gallery'];
 
         //supprimer les images du dossier
         foreach($data->deletedPictures as $deletedPicture){

@@ -34,17 +34,3 @@ require_once "core_BO.php";
         </div>
     </div>
 </div>
-<!-- <div class="container conteneurMenu">
-    <div class="row m-0">
-        <div class="col-md-4 col-sm-6 px-1 mx-auto">
-            <div class="menu hovereffect border">
-                <img id="preview_img" class="img-responsive" src="" alt="img">
-                <a class="overlay">
-                    <div class="align-items-center info">
-                        <h2 id="preview_text" class="p-0 my-auto textMenu"></h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div> -->

@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
     }
 }
 
-function getPhotos(int $id_gallery) :array
+function getPhotos(int $id_gallery): array
 {
     require_once '../controllers/db_connection.php';
     $result = [];
@@ -39,7 +39,6 @@ function getPhotos(int $id_gallery) :array
     $sth_gallery->execute();
     $gallery = $sth_gallery->fetch(\PDO::FETCH_ASSOC);
     $result['titre_page'] = $gallery['Nom'];
-    $result['gallery_name'] = $gallery['nom_gallery'];
     $result['columns'] = (int)$gallery['columns'];
     $sth_image = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $id_gallery ORDER BY position");
     $sth_image->execute();
@@ -58,9 +57,19 @@ function getPages(): array
 function getGalleries(): array
 {
     require_once '../controllers/db_connection.php';
-    $galleries = $bdd->prepare("SELECT * FROM galleries WHERE visible = 1 AND sub_cat = 0");
-    $galleries->execute();
-    return $galleries->fetchAll(\PDO::FETCH_ASSOC);
+    $query = $bdd->prepare("SELECT * FROM galleries WHERE visible = 1");
+    $query->execute();
+    $results = $query->fetchAll(\PDO::FETCH_ASSOC);
+    $galleries = [];
+    foreach ($results as $result) {
+        if($result['sub_cat'] == 1){
+            $galleries['sub_galleries'][] = $result;
+        }else{
+            $galleries['galleries'][] = $result;
+        }
+    }
+    $galleries['sub_galleries_chunks'] = array_chunk($galleries['sub_galleries'],3);
+    return $galleries;
 }
 
 function getServices(): array
@@ -84,7 +93,7 @@ function getVideos(): array
     $res = $bdd->prepare("SELECT * FROM video");
     $res->execute();
     $videos = $res->fetchAll(\PDO::FETCH_ASSOC);
-    foreach($videos as &$video){
+    foreach ($videos as &$video) {
         $video_id = explode("embed/", $video['url_video']);
         $video['video_id'] = $video_id[1];
     }

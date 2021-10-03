@@ -21,10 +21,10 @@ $visible = $result['visible'];
                     <label for="titre_page">Titre de la page :</label>
                     <input id="text_picker" name="titre_page" type="text" placeholder="Titre de la page" value="<?= $titre ?>" maxlength="15" required></input>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="lien_page">Lien de la page :</label>
                     <input name="lien_page" type="text" placeholder="Lien de la page" value="<?= $lien ?>" maxlength="15" required></input>
-                </div>
+                </div> -->
                 <div class="form-group custom-control custom-checkbox">
                     <input type="checkbox" id="visible" name="visible" class="custom-control-input" <?php if($visible == 1) { ?>checked<?php }?>></input>
                     <label class="custom-control-label" for="visible">Page visible</label>

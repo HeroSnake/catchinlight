@@ -29,7 +29,6 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/http-vue-loader"></script>
 
-
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
 
@@ -52,7 +51,7 @@
     <title>Catchin'Light</title>
 </head>
 
-<body oncontextmenu="return false" @click="closeDropDown">
+<body oncontextmenu="return false">
     <div class="icons">
         <ol>
             <li><a href="https://www.instagram.com/maxime.brsn/" target="_blank" rel="noreferrer"><i
@@ -92,7 +91,8 @@
         <!-- COMPONENTS -->
         <pages v-if="pageName=='index'" :loading="loading " :pages="pages"></pages>
 
-        <galleries v-if="pageName=='photos'" :loading="loading " :galleries="galleries"></galleries>
+        <galleries v-if="pageName=='photos'" :loading="loading " :galleries="galleries" :sub_galleries="sub_galleries"
+            :sub_galleries_chunks="sub_galleries_chunks" :mobile="mobile"></galleries>
 
         <gallery v-if="pageName=='gallery'" :loading="loading " :pages="pages" :loading="loading"
             :id_gallery="id_gallery" :gallery="gallery" :images="images" :cols="cols"></gallery>
@@ -333,7 +333,8 @@
                 </div>
         </footer>
         <!-- Footer -->
-        <div id="back-to-top" class="btnTop btn btn-light btn-lg back-to-top" @click="scrollTop"><i class="fas fa-chevron-up"></i></div>
+        <div id="back-to-top" class="btnTop btn btn-light btn-lg back-to-top" @click="scrollTop"><i
+                class="fas fa-chevron-up"></i></div>
         <!-- START Bootstrap-Cookie-Alert -->
         <div class="alert text-center cookiealert" role="alert">
             <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website.

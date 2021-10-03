@@ -12,7 +12,6 @@ $query_images->execute();
             <th>Lien</th>
             <th>ID</th>
             <th>Titre</th>
-            <th>Nom Menu</th>
             <th>Image</th>
             <th>Visible</th>
             <th>Sous-catégorie</th>
@@ -24,10 +23,9 @@ $query_images->execute();
             while ($row = $query_images->fetch(\PDO::FETCH_ASSOC)) {
                 echo
                 '<tr>
-                    <td><a href="../' . $row['nom_gallery'] . '" class="btn btn-default text-white fas fa-link"></a></td>
+                    <td><a href="../#gallery&id' . $row['id'] . '" class="btn btn-default text-white fas fa-link"></a></td>
                     <td>' . $row['id'] . '</td>
                     <td>' . $row['Nom'] . '</td>
-                    <td>' . $row['titre'] . '</td>
                     <td><img class="table_image" src="../'.$row['lien'].'"/></td>
                     <td class="text-center">';
                     if ($row['visible'] == 1) {
@@ -47,7 +45,7 @@ $query_images->execute();
                     </td>
                     <td class="text-center">
                         <a href="gallery_edit?cat=' . $row['id'] . '" class="btn btn-default text-white fas fa-edit"></a>
-                        <a class="btn btn-default hover-overlay fas fa-trash-alt text-danger btn-confirm" id="'.$row['id'].'" name="'.$row['nom_gallery'].'"></a>
+                        <a class="btn btn-default hover-overlay fas fa-trash-alt text-danger btn-confirm" id="'.$row['id'].'"></a>
                     </td>
                 <tr>';
             }
