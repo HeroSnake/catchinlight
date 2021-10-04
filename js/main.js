@@ -391,7 +391,7 @@ Vue.component('contact', {
                     </div>
                     <label for="robot" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
-                        <vue-recaptcha ref="recaptcha" @verify="onVerify" sitekey="6LeusqwZAAAAAHVJw-vAmbF83nW3cOKfRJ7vunj-"></vue-recaptcha>
+                        <vue-recaptcha ref="recaptcha" @verify="onVerify" sitekey="6Lcns6wZAAAAAEYUMOuDoUY9q1TO63ITb7TurzW5"></vue-recaptcha>
                     </div>
                     <div class="text-center text-md-left">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" @click="sendMail"></i> Send</button>
