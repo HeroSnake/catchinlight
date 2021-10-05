@@ -7,7 +7,7 @@ if (isset($_FILES['filesToUpload'])) {
         $ext = pathinfo($file_name, PATHINFO_EXTENSION);
         $valid_ext = array('png', 'jpeg', 'jpg', 'webp');
         if (in_array(strtolower($ext), $valid_ext)) {
-            compressImage($file_tmp, $location, 600);
+            compressImage($file_tmp, $location, 750);
         } else {
             echo "$file_name : Invalid file type.";
         }

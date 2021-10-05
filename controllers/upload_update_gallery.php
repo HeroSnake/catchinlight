@@ -8,30 +8,29 @@ if(isset($_POST['submit'])){
 
     if(isset($_FILES['imageMenu'])){
 
+        $title = $_POST["gallery_title"];
         $file_name=$_FILES["imageMenu"]["name"];
         $file_tmp=$_FILES["imageMenu"]["tmp_name"];
         $file_size=$_FILES["imageMenu"]["size"];
         $ext=pathinfo($file_name,PATHINFO_EXTENSION);
-        $target_file = '../'.$target_dir . basename($file_name);
+        $target_file = '../'.$target_dir . $title.'.'.$ext;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $info = getimagesize($file_tmp);
 
         if (!in_array(strtolower($ext), $valid_ext)) {
             echo "$file_name : Invalid file type.";
         } else {
-            if (move_uploaded_file($file_tmp, $target_file)) {
-                //DELETE PREVIOUS PHOTO
-                $query_galleries = $bdd->prepare("SELECT * FROM `galleries` WHERE id = $gallery_id");
-                $query_galleries->execute();
-                $previous_image = $query_galleries->fetch(\PDO::FETCH_ASSOC)['lien'];
-                unlink('../'.$previous_image);
-                //UPDATE PHOTO IN BDD
-                $query = "UPDATE galleries SET lien=? WHERE id=?";
-                $stmt= $bdd->prepare($query);
-                $stmt->execute([$target_dir.$file_name, $gallery_id]);
-                header("location: ../admin/gallery_edit?cat=" . $gallery_id);
-            } else {
-                echo "Sorry, there was an error uploading your file.<br>";
-            }
+            //DELETE PREVIOUS PHOTO
+            $query_galleries = $bdd->prepare("SELECT * FROM `galleries` WHERE id = $gallery_id");
+            $query_galleries->execute();
+            $previous_image = $query_galleries->fetch(\PDO::FETCH_ASSOC)['lien'];
+            unlink('../'.$previous_image);
+            //UPDATE PHOTO IN BDD
+            $query = "UPDATE galleries SET lien=? WHERE id=?";
+            $stmt= $bdd->prepare($query);
+            $stmt->execute([$target_dir.$title.'.'.$ext, $gallery_id]);
+            compressImage($info, $file_tmp, $target_file, 750);
+            header("location: ../admin/gallery_edit?cat=" . $gallery_id);
         }
     }else if(isset($_FILES['filesToUpload'])){
 
@@ -39,11 +38,11 @@ if(isset($_POST['submit'])){
             $file_name=$_FILES["filesToUpload"]["name"][$key];
             $file_tmp=$_FILES["filesToUpload"]["tmp_name"][$key];
             $file_size=$_FILES["filesToUpload"]["size"][$key];
-            $location = "../img/gallery/thumbnails/" . $file_name;
             $ext=pathinfo($file_name,PATHINFO_EXTENSION);
             $target_file = $target_dir . basename($file_name);
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $info = getimagesize($file_tmp);
+            $location = "../img/gallery/thumbnails/" . $file_name;
             compressImage($info, $file_tmp, $location, 600);
 
             if (!in_array(strtolower($ext), $valid_ext)) {
@@ -74,7 +73,6 @@ function compressImage($info, $source, $destination, $max_width)
     $newheight = $height / $width * $max_width;
     // Chargement
     $thumb = imagecreatetruecolor($newwidth, $newheight);
-    var_dump($thumb);
     switch ($info['mime']) {
         case 'image/jpeg':
             $source = imagecreatefromjpeg($source);

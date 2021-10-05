@@ -57,6 +57,7 @@
                     <input id="image_picker" type="file" name="imageMenu" accept="image/*" required></input>
                     <input type="hidden" value="<?=$upload_loc_menu?>" name="location">
                     <input type="hidden" value="<?=$gallery_id?>" name="gallery_id">
+                    <input type="hidden" value="<?=$titre?>" name="gallery_title">
                 </div>
                 <input class="btn" type="submit" value="Changer" name="submit">
             </form>
@@ -85,7 +86,7 @@
         <section id="photos" class="droppable grid">
             <?php
             foreach($images as $image){
-                $link = "../img/gallery/".$image["id"] . "." . $image["extension"];?>
+                $link = "../img/gallery/thumbnails/".$image["id"] . "." . $image["extension"];?>
                 <div class="col-sm-6 col-lg-<?=$colonne?> p-0 grid-item" id="<?=$image["id"]?>">
                     <div class="supp-icon" id="<?=$image["id"]?>">
                         <i class="fas fa-trash-alt text-danger"></i>
