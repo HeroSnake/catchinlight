@@ -4,7 +4,6 @@ Vue.component('gallery', {
     props: {
         id_gallery: String,
         gallery: Object,
-        images: Array,
         cols: Object,
         loading: Boolean
     },
@@ -21,9 +20,9 @@ Vue.component('gallery', {
                 image.thumbnail = "img/gallery/thumbnails/" + image.id + "." + image.extension
                 image.link = "img/gallery/" + image.id + "." + image.extension
                 image.liked = cookies[image.id] == "1" ? true : false
+                image.loaded = false
             });
             this.$parent.gallery = response.data
-            this.$parent.images = this.$parent.gallery.images.map(i => i.link)
             this.$parent.cols = {
                 default: response.data.columns,
                 700: 2,
@@ -57,21 +56,26 @@ Vue.component('gallery', {
             }
             return cookies
         },
+        loaded(index) {
+            this.$parent.gallery.images[index].loaded = true
+        }
     },
     template: `
     <div v-if="!loading">
         <div class="container">
             <div class="grid">
                 <masonry :cols="cols">
-                    <div v-for="image in gallery.images">
+                    <div v-for="(image,index) in gallery.images">
                         <div class="overflow-hidden grid-item">
-                            <div class="change-icon" :id="image.id" :name="id_gallery">
-                                <i v-if="image.liked" class="fas fa-heart fa-lg pulse text-danger" @click="like(image.id,!image.liked)"></i>
-                                <i v-else class="far fa-heart fa-lg" @click="like(image.id,!image.liked)"></i>
+                            <div v-if="image.loaded">
+                                <div class="change-icon" :id="image.id" :name="id_gallery">
+                                    <i v-if="image.liked" class="fas fa-heart fa-lg pulse text-danger" @click="like(image.id,!image.liked)"></i>
+                                    <i v-else class="far fa-heart fa-lg" @click="like(image.id,!image.liked)"></i>
+                                </div>
+                                <span class="like-text">{{image.likes}}</span>
                             </div>
-                            <span class="like-text">{{image.likes}}</span>
                             <a :href="image.link" class="lightbox" data-fancybox="gallery">
-                                <img class="rounded" :src="image.thumbnail" alt="img_gallery">
+                                <img class="rounded" :src="image.thumbnail" alt="img_gallery" @load="loaded(index)">
                             </a>
                         </div>
                     </div>
@@ -421,7 +425,6 @@ new Vue({
         loading: false,
         id_gallery: null,
         gallery: {},
-        images: [],
         cols: {},
         services: [],
         galleries: [],
