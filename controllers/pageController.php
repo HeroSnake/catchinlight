@@ -62,7 +62,7 @@ function getPages(): array
 function getGalleries(): array
 {
     require_once '../controllers/db_connection.php';
-    $query = $bdd->prepare("SELECT * FROM galleries WHERE visible = 1");
+    $query = $bdd->prepare("SELECT * FROM galleries WHERE visible = 1 ORDER BY CASE WHEN sub_cat = 1 THEN galleries.id END DESC");
     $query->execute();
     $results = $query->fetchAll(\PDO::FETCH_ASSOC);
     $galleries = [];
