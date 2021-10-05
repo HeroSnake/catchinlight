@@ -18,6 +18,7 @@ Vue.component('gallery', {
             let cookies = this.getCookies()
             let images = response.data.images
             images.forEach((image) => {
+                image.thumbnail = "img/gallery/thumbnails/" + image.id + "." + image.extension
                 image.link = "img/gallery/" + image.id + "." + image.extension
                 image.liked = cookies[image.id] == "1" ? true : false
             });
@@ -70,7 +71,7 @@ Vue.component('gallery', {
                             </div>
                             <span class="like-text">{{image.likes}}</span>
                             <a :href="image.link" class="lightbox" data-fancybox="gallery">
-                                <img class="rounded" :src="image.link" alt="img_gallery">
+                                <img class="rounded" :src="image.thumbnail" alt="img_gallery">
                             </a>
                         </div>
                     </div>

@@ -73,7 +73,7 @@
         <div class="col-sm">
             <div class="col-md-8 col-sm-12 px-1 mx-auto my-5">
                 <a class="profile-card-2">
-                    <img src="../<?=$image?>" class="img img-responsive square-img">
+                    <img src="../<?=$image?>" class="img img-responsive" style="height: 500px;width: 500px;">
                     <div class="profile-name centerImage"><?=strtoupper($titre)?></div>
                     <div class="profile-username"><?=$desc?></div>
                 </a>
@@ -91,7 +91,7 @@
                         <i class="fas fa-trash-alt text-danger"></i>
                     </div>
                     <div id="<?=$image["id"]?>" class="draggable">
-                        <div class="lightbox">
+                        <div>
                             <img src="<?=$link?>" alt="img_gallery">
                         </div>
                     </div>
