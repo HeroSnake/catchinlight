@@ -296,6 +296,8 @@ img {
 /* TABLES */
 .table_image{
     height: 100px;
+    width: 100px;
+    object-fit: cover;
 }
 .table_bo td {
     vertical-align: inherit;

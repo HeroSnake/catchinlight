@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connection.php';
+include '../classes/Database.php';
 
 if(isset($_POST['submit'])){
     $target_dir = $_POST["location"];
@@ -19,13 +19,13 @@ if(isset($_POST['submit'])){
         } else {
             if (move_uploaded_file($file_tmp, $target_file)) {
                 //DELETE PREVIOUS PHOTO
-                $query_galleries = $bdd->prepare("SELECT * FROM `pages` WHERE id = $page_id");
+                $query_galleries = Database::connect()->prepare("SELECT * FROM `pages` WHERE id = $page_id");
                 $query_galleries->execute();
                 $previous_image = $query_galleries->fetch(\PDO::FETCH_ASSOC)['image'];
                 unlink('../'.$previous_image);
                 //UPDATE PHOTO IN BDD
                 $query = "UPDATE pages SET image=? WHERE id=?";
-                $stmt= $bdd->prepare($query);
+                $stmt= Database::connect()->prepare($query);
                 $stmt->execute([$target_dir.$file_name, $page_id]);
                 header("location: ../admin/page_edit?cat=" . $page_id);
             } else {

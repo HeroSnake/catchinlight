@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connection.php';
+include '../classes/Database.php';
 
 if(isset($_POST['submit'])){
     $target_dir = $_POST["location"];
@@ -21,13 +21,13 @@ if(isset($_POST['submit'])){
             echo "$file_name : Invalid file type.";
         } else {
             //DELETE PREVIOUS PHOTO
-            $query_galleries = $bdd->prepare("SELECT * FROM `galleries` WHERE id = $gallery_id");
+            $query_galleries = Database::connect()->prepare("SELECT * FROM `galleries` WHERE id = $gallery_id");
             $query_galleries->execute();
             $previous_image = $query_galleries->fetch(\PDO::FETCH_ASSOC)['lien'];
             unlink('../'.$previous_image);
             //UPDATE PHOTO IN BDD
             $query = "UPDATE galleries SET lien=? WHERE id=?";
-            $stmt= $bdd->prepare($query);
+            $stmt= Database::connect()->prepare($query);
             $stmt->execute([$target_dir.$title.'.'.$ext, $gallery_id]);
             compressImage($info, $file_tmp, $target_file, 750);
             header("location: ../admin/gallery_edit?cat=" . $gallery_id);
@@ -51,10 +51,10 @@ if(isset($_POST['submit'])){
                 if (move_uploaded_file($file_tmp, $target_file)) {
 
                     $insert_img = "INSERT INTO image (gallery_id,extension,position) VALUES (?,?,?)";
-                    $stmt= $bdd->prepare($insert_img);
+                    $stmt= Database::connect()->prepare($insert_img);
                     $stmt->execute([$gallery_id,$ext,0]);
-                    rename($target_file, $target_dir.$bdd->lastInsertId().'.'.$ext);
-                    rename($location, "../img/gallery/thumbnails/".$bdd->lastInsertId().'.'.$ext);
+                    rename($target_file, $target_dir.Database::connect()->lastInsertId().'.'.$ext);
+                    rename($location, "../img/gallery/thumbnails/".Database::connect()->lastInsertId().'.'.$ext);
                     header('Location: ' . $_SERVER['HTTP_REFERER']);
                 } else {
                     echo "Sorry, there was an error uploading your file.<br>";

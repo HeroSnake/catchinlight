@@ -1,9 +1,8 @@
 <?php
-    require_once '../controllers/db_connection.php';
-    require_once "../controllers/php_functions.php";
     $titre_page = "Modifier une gallerie";
     $gallery_id = $_GET['cat'];
-    $query_images = $bdd->prepare("SELECT * FROM galleries WHERE id = $gallery_id LIMIT 1");
+    require_once "core_BO.php";
+    $query_images = Database::connect()->prepare("SELECT * FROM galleries WHERE id = $gallery_id LIMIT 1");
     $query_images->execute();
 
     $result = $query_images->fetch(\PDO::FETCH_ASSOC);
@@ -18,10 +17,9 @@
     $sub_cat = $result['sub_cat'];
     $colonne = floor(12 / $colonnes);
 
-    $sth = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $gallery_id ORDER BY position");
+    $sth = Database::connect()->prepare("SELECT * FROM image WHERE gallery_id = $gallery_id ORDER BY position");
     $sth->execute();
     $images = $sth->fetchAll(\PDO::FETCH_ASSOC);
-    require_once "core_BO.php";
 ?>
 <script src="../js/update_pictures.js"></script>
 <div class="container">

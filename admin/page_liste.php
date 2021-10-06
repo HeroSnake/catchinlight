@@ -2,7 +2,7 @@
 $titre_page = "Liste des pages";
 $origin = "page";
 require_once "core_BO.php";
-$query_images = $bdd->prepare("SELECT * FROM pages");
+$query_images = Database::connect()->prepare("SELECT * FROM pages");
 $query_images->execute();
 ?>
 <script src="../js/confirmation_modal.js"></script>
@@ -27,7 +27,7 @@ $query_images->execute();
                     <td>' . $row['id'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . strtoupper($row['nom']) . '</td>
-                    <td>' . $row['image'] . '</td>';
+                    <td><img style="width: 150px;" src="../' . $row['image'] . '"></td>';
                     if ($row['visible'] == 1) {
                         echo '<td><i class="fas fa-eye"></i></td>';
                     } else {

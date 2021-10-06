@@ -14,7 +14,7 @@
         $pseudo = $_POST['pseudo'];
         $mdp = $_POST['mdp'];
         
-        $sql = $bdd->prepare('SELECT id, mdp, pseudo FROM compte WHERE pseudo = "'.$pseudo.'"');
+        $sql = Database::connect()->prepare('SELECT id, mdp, pseudo FROM compte WHERE pseudo = "'.$pseudo.'"');
         $sql->execute();
     
         $count = 0;

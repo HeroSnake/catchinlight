@@ -3,7 +3,7 @@ $titre_page = "Modifier une page";
 require_once "core_BO.php";
 $page_id = $_GET['cat'];
 $upload_loc_accueil = 'img/accueil/containers/';
-$query_images = $bdd->prepare("SELECT * FROM pages WHERE id = $page_id");
+$query_images = Database::connect()->prepare("SELECT * FROM pages WHERE id = $page_id");
 $query_images->execute();
 $result = $query_images->fetch(\PDO::FETCH_ASSOC);
 $titre; $lien; $image; $visible;

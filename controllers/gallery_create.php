@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/db_connection.php';
+include '../classes/Database.php';
 require_once "php_functions.php";
 
 if (isset($_POST['submit'])) {
@@ -22,9 +22,9 @@ if (isset($_POST['submit'])) {
     }
 
     $query_create_page = "INSERT INTO galleries (Nom,lien,columns,visible,sub_cat,description) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt= $bdd->prepare($query_create_page);
+    $stmt= Database::connect()->prepare($query_create_page);
     if($stmt->execute([$Nom, $link, $colonnes, $visible, $sub_cat, $desc])){
-        $gallery_id = $bdd->lastInsertId();
+        $gallery_id = Database::connect()->lastInsertId();
         $target_file = "../$link";
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $info = getimagesize($file_tmp);
@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
         } else {
             compressImage($info, $file_tmp, $target_file, 750);
         }
-        header("location: ../admin/gallery_edit?cat=" . $bdd->lastInsertId());
+        header("location: ../admin/gallery_edit?cat=" . Database::connect()->lastInsertId());
     }else{
         var_dump($query_create_page);
         var_dump([$Nom, $link, $colonnes, $visible, $sub_cat, $desc]);

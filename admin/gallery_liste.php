@@ -2,7 +2,7 @@
 $titre_page = "Liste des galleries";
 $origin = "gallery";
 require_once "core_BO.php";
-$query_images = $bdd->prepare("SELECT * FROM galleries");
+$query_images = Database::connect()->prepare("SELECT * FROM galleries");
 $query_images->execute();
 ?>
 <script src="../js/confirmation_modal.js"></script>

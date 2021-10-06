@@ -4,8 +4,8 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
+include '../classes/Database.php';
 ob_start();
-require_once '../controllers/db_connection.php';
 require_once '../controllers/session.php';
 require_once "../controllers/php_functions.php";
 function active($current_page)
@@ -18,7 +18,7 @@ function active($current_page)
 }
 
 //VISITEURS - avec Cookies
-$query_nb_visitors = $bdd->prepare("SELECT visits FROM counter WHERE id=1");
+$query_nb_visitors = Database::connect()->prepare("SELECT visits FROM counter WHERE id=1");
 $query_nb_visitors->execute();
 $result = $query_nb_visitors->fetch(\PDO::FETCH_ASSOC);
 $nb_visitors = $result['visits'];

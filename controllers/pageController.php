@@ -1,5 +1,6 @@
 <?php
 require_once '../controllers/php_functions.php';
+include '../classes/Database.php';
 $cookie_name  = "visitor";
 $cookie_value = "yes";
 
@@ -9,8 +10,7 @@ if (isset($_COOKIE["acceptCookies"])) {
 }
 
 if (!isset($_COOKIE[$cookie_name])) {
-    require_once '../controllers/db_connection.php';
-    $update_visitors = $bdd->prepare("UPDATE counter SET visits = visits + 1 WHERE id=1");
+    $update_visitors = Database::connect()->prepare("UPDATE counter SET visits = visits + 1 WHERE id=1");
     $update_visitors->execute();
 }
 
@@ -33,14 +33,13 @@ if (isset($_GET['action'])) {
 
 function getPhotos(int $id_gallery): array
 {
-    require_once '../controllers/db_connection.php';
     $result = [];
-    $sth_gallery = $bdd->prepare("SELECT * FROM galleries WHERE id = $id_gallery");
+    $sth_gallery = Database::connect()->prepare("SELECT * FROM galleries WHERE id = $id_gallery");
     $sth_gallery->execute();
     $gallery = $sth_gallery->fetch(\PDO::FETCH_ASSOC);
     $result['titre_page'] = $gallery['Nom'];
     $result['columns'] = (int)$gallery['columns'];
-    $sth_image = $bdd->prepare("SELECT * FROM image WHERE gallery_id = $id_gallery ORDER BY position");
+    $sth_image = Database::connect()->prepare("SELECT * FROM image WHERE gallery_id = $id_gallery ORDER BY position");
     $sth_image->execute();
     $result['images'] = $sth_image->fetchAll(\PDO::FETCH_ASSOC);
     return $result;
@@ -53,16 +52,14 @@ function getPages(): array
     header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
     header("Cache-Control: post-check=0, pre-check=0", false);
     header("Pragma: no-cache");
-    require_once '../controllers/db_connection.php';
-    $pages = $bdd->prepare("SELECT * FROM pages WHERE visible = 1");
+    $pages = Database::connect()->prepare("SELECT * FROM pages WHERE visible = 1");
     $pages->execute();
     return $pages->fetchAll(\PDO::FETCH_ASSOC);
 }
 
 function getGalleries(): array
 {
-    require_once '../controllers/db_connection.php';
-    $query = $bdd->prepare("SELECT * FROM galleries WHERE visible = 1 ORDER BY CASE WHEN sub_cat = 1 THEN galleries.id END DESC, CASE WHEN sub_cat = 0 THEN galleries.id END ASC");
+    $query = Database::connect()->prepare("SELECT * FROM galleries WHERE visible = 1 ORDER BY CASE WHEN sub_cat = 1 THEN galleries.id END DESC, CASE WHEN sub_cat = 0 THEN galleries.id END ASC");
     $query->execute();
     $results = $query->fetchAll(\PDO::FETCH_ASSOC);
     $galleries = [];
@@ -79,23 +76,20 @@ function getGalleries(): array
 
 function getServices(): array
 {
-    require_once '../controllers/db_connection.php';
-    $services = $bdd->prepare("SELECT * FROM services WHERE visible = 1");
+    $services = Database::connect()->prepare("SELECT * FROM services WHERE visible = 1");
     $services->execute();
     return $services->fetchAll(\PDO::FETCH_ASSOC);
 }
 function getcaptcha(): array
 {
-    require_once '../controllers/db_connection.php';
-    $key = $bdd->prepare("SELECT value FROM cles");
+    $key = Database::connect()->prepare("SELECT value FROM cles");
     $key->execute();
     return $key->fetch(\PDO::FETCH_ASSOC);
 }
 
 function getVideos(): array
 {
-    require_once '../controllers/db_connection.php';
-    $res = $bdd->prepare("SELECT * FROM video");
+    $res = Database::connect()->prepare("SELECT * FROM video");
     $res->execute();
     $videos = $res->fetchAll(\PDO::FETCH_ASSOC);
     foreach ($videos as &$video) {

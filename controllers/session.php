@@ -11,7 +11,7 @@
     }else {
         $logged = true;
         $user_check = $_SESSION['login_user'];
-        $ses_sql = $bdd->prepare("select pseudo from compte where pseudo = '$user_check' ");
+        $ses_sql = Database::connect()->prepare("select pseudo from compte where pseudo = '$user_check' ");
         $ses_sql->execute();
         $result = $ses_sql->fetch(\PDO::FETCH_ASSOC);
         $login_session = $result['pseudo'];
